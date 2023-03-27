@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Searchbar from '../Searchbar/Searchbar';
 import Burger from '../UI/Burger/Burger';
 import styles from './Navbar.module.scss'
@@ -8,11 +9,11 @@ const Navbar: React.FC = () => {
         <div className={styles.navbar}>
             <div className={styles.navbar_logobox}>
                 <Burger />
-                <span className={styles.navbar_logo}>YuVid</span>
+                <Link to='/' className={styles.navbar_logo}>YuVid</Link>
             </div>
             <Searchbar />
             <div className={styles.navbar_auth}>
-                <a className={styles.navbar_login}>Войти</a>
+                <Link to='/auth' className={styles.navbar_login}>Войти</Link>
             </div>
         </div>
     );
