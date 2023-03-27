@@ -1,0 +1,10 @@
+@import '../../styles/variables.scss';
+
+.videos {
+    width: 100%;
+    display: grid;
+    gap: 16px;
+    row-gap: 32px;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, 360px);
+}

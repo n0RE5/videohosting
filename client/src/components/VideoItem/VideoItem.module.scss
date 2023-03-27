@@ -1,0 +1,133 @@
+@import '../../styles/variables.scss';
+
+.video {
+    width: 100%;
+    max-width: 360px;
+}
+
+.video_w {
+    display: flex;
+    flex-direction: column;
+}
+
+.video_preview {
+    height: 100%;
+    width: 100%;
+    padding-top: 56.25%;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: $tiny;
+    &:hover {
+        filter: contrast(20%);
+        cursor: pointer;
+    }
+}
+
+.video_previewImg {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.video_details {
+    width: 100%;
+    flex: auto;
+    flex-direction: row;
+    display: flex;
+}
+
+.video_avatar {
+    margin-top: 12px;
+    margin-right: 12px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+}
+
+.video_avatar_container {
+    background-color: $tiny;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    overflow: hidden;
+    img {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+.video_meta {
+    width: auto;
+    overflow-x: hidden;
+    padding-right: 24px;
+}
+
+.video_meta_title {
+    display: block;
+    margin: 12px 0 4px 0;
+    a {
+        position: relative;
+        display: block;
+        text-decoration: none;
+        color: white;
+        font-weight: 500;
+        font-size: clamp(0.8rem, 1.2rem, 1.6rem);
+        overflow: hidden;
+        max-height: 4.4rem;
+        text-overflow: ellipsis;
+        line-height: 2.2rem;
+        white-space: nowrap;   
+        word-wrap: break-word;
+        width: 100%;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.video_meta_username {
+    transition: all .25s ease-in;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 1rem;
+    color: $tiny;
+    &:hover {
+        cursor: pointer;
+        color: whitesmoke;
+    }
+}
+
+.video_views {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 1rem;
+    color: $tiny;
+}
+
+.video_metadata {
+    display: flex;
+    flex: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.video_uploadDate {
+    display: flex;
+    align-items: center;
+    &::before {
+        margin: 0 5px;
+        display: flex;
+        content: '';
+        width: 2px;
+        height: 2px;
+        background-color: $tiny;
+    }
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 1rem;
+    color: $tiny;
+}
