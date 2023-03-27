@@ -5,6 +5,8 @@ import { Role } from 'src/roles/roles.model';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './users.model';
 import { Subscription } from 'src/subscriptions/subscriptions.model';
+import { Sequelize } from 'sequelize';
+import { UserSubscriptions } from 'src/subscriptions/user-subscriptions.model';
 
 @Injectable()
 export class UsersService {
@@ -27,6 +29,21 @@ export class UsersService {
 
     async getUser(email: string) {
         const user = await this.userRepository.findOne({where: {email}, include: {all: true}})
+        return user
+    }
+
+    async getUserById(id: number) {
+        const user = await this.userRepository.findOne({
+            where: {id},
+            attributes: [
+                'id', 'profileImg', 'username', [Sequelize.fn('COUNT', Sequelize.col(`user_subscriptions.id`)), `subscribersCount`]
+            ],
+            include: {
+                model: UserSubscriptions,
+                attributes: []
+            },
+            group: ['User.id']
+        })
         return user
     }
 }
