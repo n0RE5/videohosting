@@ -18,12 +18,17 @@
 }
 
 .navbar_logo {
+    text-decoration: none;
     margin-left: 8px;
     font-weight: 700;
     color: white;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .navbar_login {
+    text-decoration: none;
     transition: all .15s ease-in;
     border-radius: 10px;
     border: 1px solid $blue;
