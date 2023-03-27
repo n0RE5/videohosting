@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IUser } from "../../types/Interfaces";
 
 interface userState {
-    user: IUser | {}
+    user: IUser
     isAuth: boolean
     isLoading: boolean
     error: string
