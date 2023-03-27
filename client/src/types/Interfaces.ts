@@ -5,6 +5,13 @@ export interface IUser {
     roles: string
 }
 
+export interface fetchedUser {
+    id: number,
+    subscribersCount: string,
+    profileImg: string,
+    username: string
+}
+
 export interface IVideo {
     id: number;
     previewImg: string;
