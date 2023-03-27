@@ -12,7 +12,7 @@ const VideoGridbox: React.FC<VideoGridboxProps> = ({videos, className}) => {
     return (
         <div className={[styles.videos, className].join(' ')}>
             {videos.map(video =>
-                <VideoItem video={video} />
+                <VideoItem key={video.previewImg} video={video} />
             )}
         </div>
     );
