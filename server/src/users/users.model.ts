@@ -6,6 +6,7 @@ import { Role } from "src/roles/roles.model";
 import { Video } from "src/video/video.model";
 import { Subscription } from "src/subscriptions/subscriptions.model";
 import { Like } from "src/likes/likes.model";
+import { UserSubscriptions } from "src/subscriptions/user-subscriptions.model";
 
 interface UserCreationAttrs {
     username: string;
@@ -27,6 +28,10 @@ export class User extends Model<User, UserCreationAttrs> {
     @Column({type: DataType.STRING, unique: true, allowNull: false})
     email: string;
 
+    @ApiProperty({example: 'img.jpg', description: "Avatar"})
+    @Column({type: DataType.STRING, unique: true, defaultValue: ""})
+    profileImg: string;
+
     @ApiProperty({example: '1t7bftadf7bad', description: "Hashed Password"})
     @Column({type: DataType.STRING, allowNull: false})
     password: string;
@@ -42,4 +47,7 @@ export class User extends Model<User, UserCreationAttrs> {
 
     @HasMany(() => Like)
     likes: Like[]
+
+    @HasMany(() => UserSubscriptions)
+    user_subscriptions: UserSubscriptions[]
 }

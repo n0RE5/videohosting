@@ -11,12 +11,13 @@ import { UsersService } from './users.service';
 import { Video } from 'src/video/video.model';
 import { Subscription } from 'src/subscriptions/subscriptions.model';
 import { Like } from 'src/likes/likes.model';
+import { UserSubscriptions } from 'src/subscriptions/user-subscriptions.model';
 
 @Module({
   controllers: [UsersController],
   providers: [UsersService],
   imports: [
-    SequelizeModule.forFeature([User, Role, UserRoles, Bans, Video, Subscription, Like]),
+    SequelizeModule.forFeature([User, Role, UserRoles, Bans, Video, Subscription, Like, UserSubscriptions]),
     RolesModule,
     forwardRef(() => AuthModule)
   ],
