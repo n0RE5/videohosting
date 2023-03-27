@@ -10,3 +10,89 @@
     height: 100%;
     width: 100%;
 }
+
+.watchpage_media {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.media_left {
+    width: 50%;
+}
+
+.media_left_w {
+    margin: 12px 0;
+}
+
+.media_title {
+    color: white;
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+
+.media_usermeta {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.user_avatar {
+    margin-right: 10px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+}
+
+.user_avatar_container {
+    background-color: $tiny;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    overflow: hidden;
+    img {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+.user_meta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.user_username {
+    transition: all .25s ease-in;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 1rem;
+    color: white;
+    &:hover {
+        cursor: pointer;
+        color: whitesmoke;
+    }
+}
+
+.user_subscribers {
+    color: $tiny;
+    font-size: 0.8rem;
+}
+
+.user_subscribebtn {
+    transition: all .15s ease-in;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-left: 30px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+    background-color: $blue;
+    border: none;
+    &:hover {
+        background-color: $blue_hover;
+        cursor: pointer;
+    }
+}
