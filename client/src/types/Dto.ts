@@ -13,6 +13,11 @@ export interface CreateVideoDto {
     readonly video: string;
 }
 
+export interface CreateSubscriptionDto {
+    readonly subscriptionId: number;
+    readonly userId: number;
+}
+
 export interface VideoDto {
     readonly limit: number;
     readonly page: number;
