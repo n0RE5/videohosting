@@ -39,6 +39,8 @@ export const parseViewsToString = (views?: number): string => {
         viewsString = `${views} просмотров`
     } else if (views === 1) {
         viewsString = `${views} просмотр`
+    } else if (views > 1 && views <= 999) {
+        viewsString = `${views} просмотров`
     } else if (views > 999 && views <= 9999) {
         const splitted = split(1)
         viewsString = `${splitted} тыс. просмотров`
