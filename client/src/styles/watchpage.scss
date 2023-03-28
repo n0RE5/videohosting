@@ -2,7 +2,10 @@
 
 .watchpage_video_container {
     width: 100%;
-    height: 100%;
+    height: 56.25vw;
+    max-height: calc(100vh - 170px);
+    min-height: 480px;
+    background-color: black;
 }
 
 .watchpage_videoplayer {
@@ -95,4 +98,27 @@
         background-color: $blue_hover;
         cursor: pointer;
     }
+}
+
+.media_videometa {
+    margin-top: 12px;
+    background-color: $tiny;
+    color: black;
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.videometa_views {
+    color: $dark;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.video_description {
+    margin-top: 4px;
+    width: 100%;
+    word-wrap: break-word;
+    font-size: 14px;
+    color: $dark;
+    white-space: normal;
 }
