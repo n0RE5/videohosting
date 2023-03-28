@@ -46,6 +46,11 @@ export class AuthService {
         }
     }
 
+    async checkUser(req: any) {
+        const token = this.jwtService.sign({email: req.user.email, id: req.user.id, username: req.user.username, roles: req.user.roles, profileImg: req.user.profileImg})
+        return token
+    }
+
     private async validateUser(userDto: CreateUserDto) {
         const user = await this.userService.getUser(userDto.email)
         const passwordHash = await bcrypt.compare(userDto.password, user.password)

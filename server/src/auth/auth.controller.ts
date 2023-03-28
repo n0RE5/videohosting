@@ -1,5 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { UseGuards } from '@nestjs/common/decorators';
+import { Get, Req, UseGuards } from '@nestjs/common/decorators';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { AuthGuard } from './auth-guard';
 import { AuthService } from './auth.service';
@@ -23,5 +23,11 @@ export class AuthController {
     @Post('/changepassword')
     changepassword(@Body() dto: {userDto: CreateUserDto, newPassword: string}) {
         return this.authService.changePassword(dto)
+    }
+
+    @Get('/check')
+    @UseGuards(AuthGuard)
+    check(@Req() req) {
+        return this.authService.checkUser(req)
     }
 }
