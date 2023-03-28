@@ -14,4 +14,7 @@ export class CreateUserDto {
     @IsString({message: "Have to be a string"})
     @Length(5, 100, {message: "Password must have at least 5 characters"})
     readonly password: string;
+
+    @ApiProperty({example: 'img.png', description: "Profile Img link"})
+    readonly profileImg?: string;
 }
