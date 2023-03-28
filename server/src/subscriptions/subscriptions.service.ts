@@ -13,7 +13,7 @@ export class SubscriptionsService {
         if (candidate) {
             throw new HttpException("You already subscribed to this user", HttpStatus.BAD_REQUEST)
         }
-        const subscribe = await this.subscriptionRepository.create(dto)
+        const subscribe = await this.subscriptionRepository.create({...dto, subscriptionId: req.user.id})
         return subscribe
     }
 

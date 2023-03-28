@@ -13,7 +13,7 @@ export class LikesService {
         if (candidate) {
             throw new HttpException("You already liked this video", HttpStatus.BAD_REQUEST)
         }
-        const like = await this.likeRepository.create(dto)
+        const like = await this.likeRepository.create({...dto, userId: req.user.id})
         return like
     }
 
