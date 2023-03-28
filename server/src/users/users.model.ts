@@ -29,7 +29,7 @@ export class User extends Model<User, UserCreationAttrs> {
     email: string;
 
     @ApiProperty({example: 'img.jpg', description: "Avatar"})
-    @Column({type: DataType.STRING, unique: true, defaultValue: ""})
+    @Column({type: DataType.STRING, defaultValue: ""})
     profileImg: string;
 
     @ApiProperty({example: '1t7bftadf7bad', description: "Hashed Password"})
