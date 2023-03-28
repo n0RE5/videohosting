@@ -8,8 +8,8 @@ export class LikesService {
 
     constructor(@InjectModel(Like) private likeRepository: typeof Like) {}
 
-    async like(dto: CreateLikeDto) {
-        const candidate = await this.likeRepository.findOne({where: {userId: dto.userId, videoId: dto.videoId}})
+    async like(dto: CreateLikeDto, req: any) {
+        const candidate = await this.likeRepository.findOne({where: {userId: req.user.id, videoId: dto.videoId}})
         if (candidate) {
             throw new HttpException("You already liked this video", HttpStatus.BAD_REQUEST)
         }
@@ -22,8 +22,8 @@ export class LikesService {
         return likes
     }
 
-    async isLiked(dto: CreateLikeDto) {
-        const candidate = await this.likeRepository.findOne({where: {userId: dto.userId, videoId: dto.videoId}})
+    async isLiked(dto: CreateLikeDto, req: any) {
+        const candidate = await this.likeRepository.findOne({where: {userId: req.user.id, videoId: dto.videoId}})
         if (!candidate) {
             return false
         }

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req, UseGuards } from '@nestjs/common';
 import { ApiOperation } from '@nestjs/swagger';
 import { AuthGuard } from 'src/auth/auth-guard';
 import { CreateLikeDto } from './dto/create-like.dto';
@@ -11,8 +11,8 @@ export class LikesController {
     @ApiOperation({summary: "Like Video"})
     @UseGuards(AuthGuard)
     @Post()
-    create(@Body() dto: CreateLikeDto) {
-        return this.likeService.like(dto)
+    create(@Body() dto: CreateLikeDto, @Req() req) {
+        return this.likeService.like(dto, req)
     }
 
     @Get('/:videoId')
@@ -23,7 +23,7 @@ export class LikesController {
     @ApiOperation({summary: "Check if video is liked"})
     @UseGuards(AuthGuard)
     @Post('/check')
-    check(@Body() dto: CreateLikeDto) {
-        return this.likeService.isLiked(dto)
+    check(@Body() dto: CreateLikeDto, @Req() req) {
+        return this.likeService.isLiked(dto, req)
     }
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { AuthGuard } from 'src/auth/auth-guard';
 import { CreateSubscriptionDto } from './dto/create-subscription.dto';
@@ -14,23 +14,23 @@ export class SubscriptionsController {
     @ApiResponse({status: 200, type: Subscription})
     @UseGuards(AuthGuard)
     @Post('/subscribe')
-    subscribe(@Body() dto: CreateSubscriptionDto) {
-        return this.subscriptionsService.subscribe(dto)
+    subscribe(@Body() dto: CreateSubscriptionDto, @Req() req) {
+        return this.subscriptionsService.subscribe(dto, req)
     }
 
     @ApiOperation({summary: "Unsubscribe"})
     @ApiResponse({status: 200, type: Subscription})
     @UseGuards(AuthGuard)
     @Post('/unsubscribe')
-    unsubscribe(@Body() dto: CreateSubscriptionDto) {
-        return this.subscriptionsService.unsubscribe(dto)
+    unsubscribe(@Body() dto: CreateSubscriptionDto, @Req() req) {
+        return this.subscriptionsService.unsubscribe(dto, req)
     }
 
     @ApiOperation({summary: "Check if subscribed"})
     @ApiResponse({status: 200, type: Subscription})
     @UseGuards(AuthGuard)
     @Post('/check')
-    check(@Body() dto: CreateSubscriptionDto) {
-        return this.subscriptionsService.isSubscribed(dto)
+    check(@Body() dto: CreateSubscriptionDto, @Req() req) {
+        return this.subscriptionsService.isSubscribed(dto, req)
     }
 }
