@@ -1,24 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getVideos } from '../backendAPI/videoAPI';
+import Loader from '../components/UI/Loader/Loader';
 import VideoGridbox from '../components/VideoGridbox/VideoGridbox';
 import VideoItem from '../components/VideoItem/VideoItem';
+import { useFetching } from '../hooks/useFetching';
 import { IVideo } from '../types/Interfaces';
 
 function MainPage () {
-    const pl = {
-        id: 1,
-        previewImg: "google.png",
-        video: "123",
-        title: "looooorem impsum si dolor amet umpsi,",
-        description: "123",
-        views: 1,
-        tags: "123",
-        userId: 1,
-        likesCount: "123",
-    }
-    const placeholder: IVideo[] = [pl, pl, pl, pl, pl, pl, pl, pl, pl]
+    const [videos, setVideos] = useState<IVideo[]>([])
+
+    const [fetchVideos, isFetching] = useFetching(async () => {
+        const res = await getVideos({limit: 10, page: 1})
+        setVideos(res)
+        return 
+    })
+
+    useEffect(() => {
+        fetchVideos()
+    }, [])
+
     return (
         <div>
-            <VideoGridbox videos={placeholder}/>
+            {isFetching
+                ? <Loader />
+                : <VideoGridbox videos={videos}/>
+            }
         </div>
     );
 };
