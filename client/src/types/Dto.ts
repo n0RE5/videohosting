@@ -14,7 +14,6 @@ export interface CreateVideoDto {
 }
 
 export interface CreateSubscriptionDto {
-    readonly subscriptionId: number;
     readonly userId: number;
 }
 
