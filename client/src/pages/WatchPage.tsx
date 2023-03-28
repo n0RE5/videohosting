@@ -7,6 +7,7 @@ import Avatar from '../components/UI/Avatar/Avatar';
 import Loader from '../components/UI/Loader/Loader';
 import { useFetching } from '../hooks/useFetching';
 import { useAppSelector } from '../hooks/useReduxHooks';
+import { useSubscriptions } from '../hooks/useSubscriptions';
 import '../styles/watchpage.scss'
 import { fetchedUser, IVideo } from '../types/Interfaces';
 import { parseRawDate, parseViewsToString } from '../utils/Parsers';
@@ -16,6 +17,7 @@ function WatchPage() {
     const [params] = useSearchParams()
     const [video, setVideo] = useState<IVideo>()
     const [videoOwner, setVideoOwner] = useState<fetchedUser>()
+    const [isSubscribed, subscribe, unsubscribe] = useSubscriptions(video?.userId)
     const user = useAppSelector(state => state.userSlice)
     const videoURL = params.get('v')
 
@@ -61,8 +63,17 @@ function WatchPage() {
                                         <Link to={`/channel/${video?.userId}`} className='user_username'>{videoOwner?.username}</Link>
                                         <div className='user_subscribers'>{videoOwner?.subscribersCount} подписчиков</div>
                                     </div>
-                                    <button className='user_subscribebtn'>
-                                        Подписаться
+                                    <button 
+                                        onClick={() => {
+                                            if(isSubscribed) {
+                                                unsubscribe()
+                                            } else {
+                                                subscribe()
+                                            }
+                                        }}
+                                        className='user_subscribebtn'
+                                    >
+                                        {isSubscribed ? "Вы подписанны" : "Подписаться"}
                                     </button>
                                 </div>
                             </div>
