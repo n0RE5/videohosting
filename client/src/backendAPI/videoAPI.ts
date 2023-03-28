@@ -1,5 +1,5 @@
 import { $authHost, $host } from "./index";
-import { CreateVideoDto, GetUsersVideoDto, SearchVideoDto } from "../types/Dto";
+import { CreateVideoDto, GetUsersVideoDto, SearchVideoDto, VideoDto } from "../types/Dto";
 import { IVideo } from "../types/Interfaces";
 
 interface countedVideos {
@@ -27,4 +27,10 @@ export const getVideosFromUser = async (dto: GetUsersVideoDto): Promise<countedV
 export const searchVideos = async (dto: SearchVideoDto) => {
     const response = await $host.post(`video/search`, dto)
     return response.data
+}
+
+export const getVideos = async (dto: VideoDto): Promise<IVideo[]> => {
+    const response = await $host.post(`video/videos`, dto)
+    return response.data
+
 }
