@@ -2,7 +2,8 @@ export interface IUser {
     id?: number,
     username?: string,
     email?: string,
-    roles?: string
+    roles?: string,
+    profileImg?: string
 }
 
 export interface fetchedUser {
@@ -22,4 +23,5 @@ export interface IVideo {
     tags: string;
     userId: number;
     likesCount: string;
+    createdAt: string;
 }
