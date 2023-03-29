@@ -5,13 +5,14 @@ import styles from './Avatar.module.scss'
 interface AvatarProps {
     channelId?: number
     profileImg?: string
+    large?: boolean
 }
 
-const Avatar: React.FC<AvatarProps> = ({channelId, profileImg}) => {
+const Avatar: React.FC<AvatarProps> = ({channelId, profileImg, large}) => {
     return (
         <Link to={`/channel/${channelId}`} className={styles.avatar}>
-            <div className={styles.avatar_container}>
-                <img src={process.env.REACT_APP_API_URL + `${profileImg}`} />
+            <div data-large={large} className={styles.avatar_container}>
+                <img data-large={large} src={process.env.REACT_APP_API_URL + `${profileImg}`} />
             </div>
         </Link>
     );
