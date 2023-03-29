@@ -3,8 +3,8 @@
 .videos {
     width: 100%;
     display: grid;
-    gap: 16px;
+    gap: $video-grid-gap;
     row-gap: 32px;
     justify-content: center;
-    grid-template-columns: repeat(auto-fit, 360px);
+    grid-template-columns: repeat($max-items-per-video-grid, calc(100% / $max-items-per-video-grid - $video-grid-gap));
 }
