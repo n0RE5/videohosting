@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { checkSubscription, subscribeToUser, unsubscribeFromUser } from "../backendAPI/subscribtionsAPI"
 import { useFetching } from "./useFetching"
+import { useAppSelector } from "./useReduxHooks"
 
 export const useSubscriptions = (userId?: number) => {
     const [isSubscribed, setIsSubscribed] = useState<boolean>(false)
+    const isAuth = useAppSelector(state => state.userSlice.isAuth)
+    const navigate = useNavigate()
 
     const checkSubscribe = async () => {
         if(!userId) return
@@ -13,16 +17,14 @@ export const useSubscriptions = (userId?: number) => {
 
     const [subscribe, subscribeFetching] = useFetching(async () => {
         if(!userId) return
+        if(!isAuth) return navigate('/auth')
         const response = await subscribeToUser({userId})
-        console.log(response);
-        
     })
 
     const [unsubscribe, unsubscribeFetching] = useFetching(async () => {
         if(!userId) return
+        if(!isAuth) return navigate('/auth')
         const response = await unsubscribeFromUser({userId})
-        console.log(response);
-
     })
 
     useEffect(() => {
