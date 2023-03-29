@@ -57,3 +57,38 @@ export const parseViewsToString = (views?: number): string => {
 
     return viewsString
 }
+
+export const parseSubsToString = (subs?: number): string => {
+    let subsString = ''
+    
+    if(!subs) {
+        return `0 подписчиков`
+    }
+
+    const split = (n: number) => {
+        let splitted = subs.toString().split("").slice(0, n).join("")
+        return splitted
+    }
+
+    if (subs === 0) {
+        subsString = `${subs} подписчиков`
+    } else if (subs === 1) {
+        subsString = `${subs} подписчик`
+    } else if (subs > 1 && subs <= 999) {
+        subsString = `${subs} подписчиков`
+    } else if (subs > 999 && subs <= 9999) {
+        const splitted = split(1)
+        subsString = `${splitted} тыс. подписчиков`
+    } else if (subs > 9999 && subs <= 99999) {
+        const splitted = split(2)
+        subsString = `${splitted} тыс. подписчиков`
+    } else if (subs > 99999 && subs <= 999999) {
+        const splitted = split(3)
+        subsString = `${splitted} тыс. подписчиков`
+    } else if (subs > 999999 && subs <= 9999999) {
+        const splitted = split(1)
+        subsString = `${splitted} млн. подписчиков`
+    }
+
+    return subsString
+}
