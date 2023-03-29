@@ -1,0 +1,72 @@
+@import './variables.scss';
+
+.channelpage_w {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 1488px;
+}
+
+.channelpage_usermeta {
+    display: flex;
+    margin-bottom: 24px;
+}
+
+.channelpage_hr {
+    overflow: hidden;
+    border: none;
+    border-radius: 3px;
+    margin-bottom: 24px;
+    border-top: 4px solid $tiny;
+}
+
+.channelpage_subscribe {
+    transition: all .25s ease-in;
+    border: none;
+    border-radius: 20px;
+    background-color: $blue;
+    padding: 10px 20px;
+    color: white;
+    font-weight: 500;
+    font-size: 1rem;
+    &:hover {
+        cursor: pointer;
+        background-color: $blue_hover;
+    }
+    &[data-subscribed="true"] {
+        background-color: $blue_hover;
+        &:hover {
+            background-color: $blue;
+        }
+    }
+}
+
+.channelpage_usercontainer {
+    align-items: center;
+    display: flex;
+    margin-left: 24px;
+    width: 100%;
+    justify-content: space-between;
+
+}
+
+.channelpage_username {
+    color: white;
+    font-size: 1.4rem;
+}
+
+.channelpage_user_media {
+    display: flex;
+    margin-top: 12px;
+    color: $tiny;
+    font-size: 0.9rem;
+}
+
+.channelpage_empty {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.2rem;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+}
