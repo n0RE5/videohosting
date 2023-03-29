@@ -6,6 +6,7 @@ import { getVideo, getVideosFromUser } from '../backendAPI/videoAPI';
 import Avatar from '../components/UI/Avatar/Avatar';
 import Loader from '../components/UI/Loader/Loader';
 import { useFetching } from '../hooks/useFetching';
+import { useLikes } from '../hooks/useLikes';
 import { useAppSelector } from '../hooks/useReduxHooks';
 import { useSubscriptions } from '../hooks/useSubscriptions';
 import '../styles/watchpage.scss'
@@ -17,6 +18,7 @@ function WatchPage() {
     const [params] = useSearchParams()
     const [video, setVideo] = useState<IVideo>()
     const [videoOwner, setVideoOwner] = useState<fetchedUser>()
+    const [isLiked, like] = useLikes(video?.id)
     const [isSubscribed, subscribe, unsubscribe] = useSubscriptions(video?.userId)
     const user = useAppSelector(state => state.userSlice)
     const videoURL = params.get('v')
@@ -55,25 +57,39 @@ function WatchPage() {
                         <div className="media_left_w">
                             <div className="media_meta">
                                 <div className='media_title'>{video?.title}</div>
-                                <div className="media_usermeta">
-                                    <div className='user_avatar'>
-                                        <Avatar channelId={video?.userId} profileImg={videoOwner?.profileImg}/>
-                                    </div>
-                                    <div className='user_meta'>
-                                        <Link to={`/channel/${video?.userId}`} className='user_username'>{videoOwner?.username}</Link>
-                                        <div className='user_subscribers'>{videoOwner?.subscribersCount} подписчиков</div>
+                                <div className='media_user'>
+                                    <div className="media_usermeta">
+                                        <div className='user_avatar'>
+                                            <Avatar channelId={video?.userId} profileImg={videoOwner?.profileImg}/>
+                                        </div>
+                                        <div className='user_meta'>
+                                            <Link to={`/channel/${video?.userId}`} className='user_username'>{videoOwner?.username}</Link>
+                                            <div className='user_subscribers'>{videoOwner?.subscribersCount} подписчиков</div>
+                                        </div>
+                                        <button 
+                                            onClick={() => {
+                                                if(isSubscribed) {
+                                                    unsubscribe()
+                                                } else {
+                                                    subscribe()
+                                                }
+                                            }}
+                                            className='user_subscribebtn'
+                                        >
+                                            {isSubscribed ? "Вы подписанны" : "Подписаться"}
+                                        </button>
                                     </div>
                                     <button 
-                                        onClick={() => {
-                                            if(isSubscribed) {
-                                                unsubscribe()
-                                            } else {
-                                                subscribe()
-                                            }
-                                        }}
-                                        className='user_subscribebtn'
+                                        onClick={() => like()} 
+                                        disabled={isLiked} 
+                                        data-liked={isLiked} 
+                                        className='user_likebtn'
                                     >
-                                        {isSubscribed ? "Вы подписанны" : "Подписаться"}
+                                        <span className='user_likebtn_img'/>
+                                        &nbsp; 
+                                        <span className='user_likebtn_text'>
+                                            {video?.likesCount}
+                                        </span> 
                                     </button>
                                 </div>
                             </div>
