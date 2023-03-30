@@ -1,0 +1,21 @@
+@import '../../../styles/variables.scss';
+
+.link_container {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    border-radius: 10px;
+    padding: 12px 16px;
+    background-color: $dark;
+    font-weight: 700;
+    width: 100%;
+    &:hover {
+        background-color: $transparent;
+        cursor: pointer;
+    }
+}

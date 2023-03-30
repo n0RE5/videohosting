@@ -1,0 +1,12 @@
+@import '../../styles/variables.scss';
+
+.sidebar {
+    width: 250px;
+    background-color: $dark;
+}
+
+.sidebar_container {
+    width: 100%;
+    padding: 16px;
+    border-bottom: 1px solid $transparent;
+}
