@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/useReduxHooks';
+import { STUDIO_PATH } from '../../utils/Consts';
 import StudioSidebarLink from '../UI/StudioSidebarLink/StudioSidebarLink';
 import styles from './StudioSidebar.module.scss'
 
@@ -17,9 +17,7 @@ const StudioSidebar: React.FC = () => {
                     <div className={styles.user_username}>{user.username}</div>
                 </div>
                 <div className={styles.sidebar_link_container}>
-                    <StudioSidebarLink to={``}>Главная</StudioSidebarLink>
-                    <StudioSidebarLink to={``}>Ваш Контент</StudioSidebarLink>
-                    <StudioSidebarLink to={``}>Настройки</StudioSidebarLink>
+                    <StudioSidebarLink to={STUDIO_PATH}>Главная</StudioSidebarLink>
                 </div>
             </div>
         </div>
