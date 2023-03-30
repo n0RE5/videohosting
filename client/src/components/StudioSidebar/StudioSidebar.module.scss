@@ -3,6 +3,7 @@
 .sidebar {
     width: 350px;
     background-color: $darker;
+    border-right: 1px solid $transparent;
 }
 
 .sidebar_user_meta {
