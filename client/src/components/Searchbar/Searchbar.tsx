@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { SEARCH_PATH } from '../../utils/Consts';
 import styles from './Searchbar.module.scss'
 
 const Searchbar: React.FC = () => {
@@ -8,7 +9,7 @@ const Searchbar: React.FC = () => {
     
     const redirect = (e: React.MouseEvent) => {
         e.preventDefault()
-        navigate(`/search?searchQuery=${searchQuery}`)
+        navigate(`${SEARCH_PATH}?searchQuery=${searchQuery}`)
         return
     }
 

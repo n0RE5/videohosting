@@ -6,6 +6,7 @@ import { useAppDispatch } from '../hooks/useReduxHooks';
 import { fetchUser, fetchUserError, fetchUserSuccess } from '../store/reducers/UserSlice';
 import '../styles/authpage.scss'
 import { IUser } from '../types/Interfaces';
+import { MAIN_PATH } from '../utils/Consts';
 
 function AuthPage() {
     const navigate = useNavigate()
@@ -26,7 +27,7 @@ function AuthPage() {
                 response = await registration({username, email, password})
             }
             dispatch(fetchUserSuccess(response))
-            return navigate('/')
+            return navigate(MAIN_PATH)
         } catch (error: any) {
             dispatch(fetchUserError(error.response?.data?.message))
         }

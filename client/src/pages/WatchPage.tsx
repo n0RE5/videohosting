@@ -11,6 +11,7 @@ import { useAppSelector } from '../hooks/useReduxHooks';
 import { useSubscriptions } from '../hooks/useSubscriptions';
 import '../styles/watchpage.scss'
 import { fetchedUser, IVideo } from '../types/Interfaces';
+import { CHANNEL_PATH } from '../utils/Consts';
 import { parseRawDate, parseViewsToString } from '../utils/Parsers';
 import { fetchedUserPlacehoder, videoPlacehoder } from '../utils/Placeholders';
 
@@ -64,7 +65,7 @@ function WatchPage() {
                                             <Avatar channelId={video.userId} profileImg={videoOwner.profileImg}/>
                                         </div>
                                         <div className='user_meta'>
-                                            <Link to={`/channel/${video.userId}`} className='user_username'>{videoOwner.username}</Link>
+                                            <Link to={`${CHANNEL_PATH}/${video.userId}`} className='user_username'>{videoOwner.username}</Link>
                                             <div className='user_subscribers'>{videoOwner.subscribersCount} подписчиков</div>
                                         </div>
                                         <button 
