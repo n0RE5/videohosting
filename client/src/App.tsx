@@ -25,18 +25,14 @@ function App() {
     checkUser()
   }, [])
 
-  if(isUserLoading) {
-    return <Loader />
-  }
-
   return (
     <div className="App">
       <BrowserRouter>
         <Navbar />
-        <div className='app_w'>
-          <Sidebar />
-          <AppRouter />
-        </div>
+        {isUserLoading
+          ? <Loader />
+          : <AppRouter />
+        }
       </BrowserRouter>
     </div>
   );
