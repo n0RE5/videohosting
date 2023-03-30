@@ -5,6 +5,7 @@ import VideoGridbox from '../components/VideoGridbox/VideoGridbox';
 import VideoItem from '../components/VideoItem/VideoItem';
 import { useFetching } from '../hooks/useFetching';
 import { IVideo } from '../types/Interfaces';
+import '../styles/mainpage.scss'
 
 function MainPage () {
     const [videos, setVideos] = useState<IVideo[]>([])
@@ -23,7 +24,9 @@ function MainPage () {
         <div>
             {isFetching
                 ? <Loader />
-                : <VideoGridbox videos={videos}/>
+                : <div className='mainpage_videogrid'>
+                    <VideoGridbox videos={videos}/>
+                  </div>
             }
         </div>
     );
