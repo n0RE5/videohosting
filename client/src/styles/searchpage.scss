@@ -1,0 +1,36 @@
+@import './variables.scss';
+
+.searchpage_w {
+    width: 1488px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.searchpage_videogrid {
+    margin-top: 12px;
+    width: 100%;
+}
+
+.searchpage_found {
+    font-weight: 500;
+    color: white;
+    font-size: 16px;
+}
+
+.searchpage_hr {
+    overflow: hidden;
+    border: none;
+    border-radius: 3px;
+    margin-top: 12px;
+    margin-bottom: 24px;
+    border-top: 4px solid $tiny;
+}
+
+.searchpage_notfound {
+    margin: 12px 0;
+    width: 100%;
+    font-weight: 500;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+}
