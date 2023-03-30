@@ -2,20 +2,20 @@
 
 .link_container {
     width: 100%;
-    border-radius: 10px;
 }
 
 .link {
+    transition: all .15s ease-in;
     text-decoration: none;
-    color: white;
+    background-color: $transparent;
+    color: $tiny;
     display: flex;
-    border-radius: 10px;
     padding: 16px 16px;
-    background-color: $dark;
     font-weight: 700;
     width: 100%;
     &:hover {
-        background-color: $transparent;
+        border-left: 10px solid $blue;
+        background-color: $dark;
         cursor: pointer;
     }
 }
