@@ -7,4 +7,9 @@
     row-gap: 32px;
     justify-content: center;
     grid-template-columns: repeat($max-items-per-video-grid, calc(100% / $max-items-per-video-grid - $video-grid-gap));
+    &[data-vertical="true"] {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
 }

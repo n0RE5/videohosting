@@ -6,13 +6,14 @@ import styles from './VideoGridbox.module.scss'
 interface VideoGridboxProps {
     videos: IVideo[],
     className?: string
+    vertical?: boolean
 }
 
-const VideoGridbox: React.FC<VideoGridboxProps> = ({videos, className}) => {
+const VideoGridbox: React.FC<VideoGridboxProps> = ({videos, className, vertical}) => {
     return (
-        <div className={[styles.videos, className].join(' ')}>
+        <div data-vertical={vertical} className={[styles.videos, className].join(' ')}>
             {videos.map(video =>
-                <VideoItem key={video.previewImg} video={video} />
+                <VideoItem vertical={vertical} key={video.previewImg} video={video} />
             )}
         </div>
     );
