@@ -3,6 +3,37 @@
 .video {
     width: 100%;
     max-width: 360px;
+    &[data-vertical="true"] {
+        max-width: 100%;
+        .video_w {
+            flex-direction: row;
+        }
+        .video_meta {
+            display: flex;
+            flex-direction: column;
+        }
+        .video_preview {
+            max-width: 360px;
+            margin-right: 16px;
+        }
+        .video_details {
+            flex-direction: column;
+        }
+        .video_avatar {
+            margin: 0;
+            margin-right: 8px;
+        }
+        .video_meta_title {
+            a {
+                font-size: 1.4rem;
+            }
+            order: -2;
+            margin: 0;
+        }
+        .video_metadata {
+            order: -1;
+        }
+    }
 }
 
 .video_w {
@@ -53,6 +84,22 @@
     flex: auto;
     flex-direction: row;
     display: flex;
+}
+
+.video_verticaluser {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    margin-top: 12px;
+}
+
+.video_description {
+    color: $tiny;
+    font-size: 1rem;
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .video_avatar {
