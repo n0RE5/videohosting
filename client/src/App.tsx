@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { check } from './backendAPI/userAPI';
 import AppRouter from './components/AppRouter';
 import Navbar from './components/Navbar/Navbar';
+import Sidebar from './components/Sidebar/Sidebar';
 import Loader from './components/UI/Loader/Loader';
 import { useFetching } from './hooks/useFetching';
 import { useAppDispatch } from './hooks/useReduxHooks';
@@ -32,7 +33,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar />
-        <AppRouter />
+        <div className='app_w'>
+          <Sidebar />
+          <AppRouter />
+        </div>
       </BrowserRouter>
     </div>
   );
