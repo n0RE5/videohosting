@@ -30,7 +30,7 @@ function ChannelPage () {
 
     useEffect(() => {
         fetchAll()
-    }, [])
+    }, [param.userId])
 
     if (isFetching) {
         return <Loader />
