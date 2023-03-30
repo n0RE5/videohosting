@@ -10,3 +10,21 @@
     padding: 16px;
     border-bottom: 1px solid $transparent;
 }
+
+.sidebar_contacts {
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    a {
+        font-weight: 500;
+        font-size: 18px;
+        text-decoration: none;
+        color: $tiny;
+    }
+}
+
+.sidebar_copy {
+    margin-top: 16px;
+    font-size: 14px;
+    color: $tiny;
+}
