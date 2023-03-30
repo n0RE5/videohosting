@@ -9,7 +9,4 @@ export class CreateVideoDto {
     
     @ApiProperty({example: '#nest #react', description: "Video Tags"})
     readonly tags: string;
-
-    @ApiProperty({example: '1', description: "User Id"})
-    readonly userId: number;
 }

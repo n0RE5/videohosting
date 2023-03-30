@@ -13,13 +13,13 @@ export class VideoService {
 
     constructor(@InjectModel(Video) private videoRepository: typeof Video, private fileService: FilesService) {}
 
-    async create(dto: CreateVideoDto, files: any) {
+    async create(dto: CreateVideoDto, files: any, req: any) {
         if (!files.length) {
             throw new HttpException('No files uploaded', HttpStatus.BAD_REQUEST)
         }
         const preview = await this.fileService.createFile(files[0], '.jpg')
         const videoLink = await this.fileService.createFile(files[1], '.mp4')
-        const video = await this.videoRepository.create({...dto, video: videoLink, previewImg: preview})
+        const video = await this.videoRepository.create({...dto, video: videoLink, previewImg: preview, userId: req.user.id})
         return video
     }
 

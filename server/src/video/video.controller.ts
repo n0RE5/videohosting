@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req, UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { AuthGuard } from 'src/auth/auth-guard';
@@ -18,8 +18,8 @@ export class VideoController {
     @UseInterceptors(FilesInterceptor('filez'))
     @UseGuards(AuthGuard)
     @Post()
-    create(@Body() videoDto: CreateVideoDto, @UploadedFiles() files) {        
-        return this.videoService.create(videoDto, files)
+    create(@Body() videoDto: CreateVideoDto, @UploadedFiles() files, @Req() req) {        
+        return this.videoService.create(videoDto, files, req)
     }
 
     @ApiOperation({summary: "Get Video"})
