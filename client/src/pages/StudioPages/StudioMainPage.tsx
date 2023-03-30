@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import AddVideoModal from '../../components/AddVideoModal/AddVideoModal';
 import StudioContainer from '../../components/StudioContainer/StudioContainer';
-import Modal from '../../components/UI/Modal/Modal';
 import '../../styles/studiopage.scss'
 
 const StudioMainPage: React.FC = () => {
@@ -16,8 +16,7 @@ const StudioMainPage: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <Modal active={modalActive} setActive={setModalActive}>
-            </Modal>
+            <AddVideoModal visible={modalActive} setActive={setModalActive} />
         </StudioContainer>
     );
 };
