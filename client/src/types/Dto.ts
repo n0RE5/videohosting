@@ -8,7 +8,6 @@ export interface CreateVideoDto {
     readonly title: string;
     readonly description: string;
     readonly tags: string;
-    readonly userId: number;
     readonly previewImg: string;
     readonly video: string;
 }
