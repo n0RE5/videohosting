@@ -7,6 +7,7 @@ import { getById } from '../../backendAPI/userAPI';
 import Avatar from '../UI/Avatar/Avatar';
 import { parseRawDate, parseViewsToString } from '../../utils/Parsers';
 import { CHANNEL_PATH, WATCH_PATH } from '../../utils/Consts';
+import { fetchedUserPlacehoder } from '../../utils/Placeholders';
 
 interface VideoItemProps {
     video: IVideo
@@ -14,7 +15,7 @@ interface VideoItemProps {
 }
 
 const VideoItem: React.FC<VideoItemProps> = ({video, vertical}) => {
-    const [user, setUser] = useState<fetchedUser>()
+    const [user, setUser] = useState<fetchedUser>(fetchedUserPlacehoder)
 
     const fetchUser = async () => {
         const user = await getById(video.userId)
@@ -37,7 +38,7 @@ const VideoItem: React.FC<VideoItemProps> = ({video, vertical}) => {
                     {vertical 
                         ? null
                         : <div className={styles.video_avatar}>
-                            <Avatar channelId={video.userId} profileImg={user?.profileImg} />
+                            <Avatar channelId={video.userId} profileImg={user.profileImg} />
                           </div>
                     }
                     <div className={styles.video_meta}>
@@ -49,11 +50,11 @@ const VideoItem: React.FC<VideoItemProps> = ({video, vertical}) => {
                         {vertical
                             ? <div className={styles.video_verticaluser}>
                                 <div className={styles.video_avatar}>
-                                    <Avatar channelId={video.userId} profileImg={user?.profileImg} />
+                                    <Avatar channelId={video.userId} profileImg={user.profileImg} />
                                 </div>
-                                <Link to={`${CHANNEL_PATH}/${video.userId}`} className={styles.video_meta_username}>{user?.username}</Link>
+                                <Link to={`${CHANNEL_PATH}/${video.userId}`} className={styles.video_meta_username}>{user.username}</Link>
                               </div>
-                            : <Link to={`${CHANNEL_PATH}/${video.userId}`} className={styles.video_meta_username}>{user?.username}</Link>
+                            : <Link to={`${CHANNEL_PATH}/${video.userId}`} className={styles.video_meta_username}>{user.username}</Link>
                         }
                         <div className={styles.video_metadata}>
                             <span className={styles.video_views}>{parseViewsToString(video.views)}</span>
