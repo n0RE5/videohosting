@@ -1,9 +1,9 @@
 export interface IUser {
-    id?: number,
-    username?: string,
-    email?: string,
-    roles?: string,
-    profileImg?: string
+    id: number,
+    username: string,
+    email: string,
+    roles: string,
+    profileImg: string
 }
 
 export interface fetchedUser {

@@ -8,8 +8,16 @@ interface userState {
     error: string
 }
 
+const initUser: IUser = {
+    id: 0,
+    username: "",
+    email: "",
+    roles: "USER",
+    profileImg: ""
+}
+
 const initialState: userState = {
-    user: {},
+    user: initUser,
     isAuth: false,
     isLoading: false,
     error: ''
@@ -35,7 +43,7 @@ const userSlice = createSlice({
         userLogout(state) {
             state.isAuth = false
             state.isLoading = false
-            state.user = {}
+            state.user = initUser
             state.error = ''
         }
     },
