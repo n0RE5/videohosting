@@ -10,12 +10,13 @@ import { fetchedUser, IVideo } from '../types/Interfaces';
 import { parseSubsToString } from '../utils/Parsers';
 import '../styles/channelpage.scss'
 import { useSubscriptions } from '../hooks/useSubscriptions';
+import { fetchedUserPlacehoder } from '../utils/Placeholders';
 
 function ChannelPage () {
+    const param = useParams()
     const [videos, setVideos] = useState<IVideo[]>([])
     const [videoCount, setVideoCount] = useState<number>(0)
-    const [channelUser, setChannelUser] = useState<fetchedUser>()
-    const param = useParams()
+    const [channelUser, setChannelUser] = useState<fetchedUser>(fetchedUserPlacehoder)
     const [isSubscribed, subscribe, unsubscribe] = useSubscriptions(Number(param?.userId))
 
     const [fetchAll, isFetching] = useFetching(async() => {
@@ -38,12 +39,12 @@ function ChannelPage () {
         <div className='channelpage'>
             <div className="channelpage_w">
                 <div className='channelpage_usermeta'>
-                    <Avatar large channelId={Number(param?.userId)} profileImg={channelUser?.profileImg} />
+                    <Avatar large channelId={Number(param?.userId)} profileImg={channelUser.profileImg} />
                     <div className='channelpage_usercontainer'>
                         <div className='channelpage_user'>
-                            <div className='channelpage_username'>@{channelUser?.username}</div>
+                            <div className='channelpage_username'>@{channelUser.username}</div>
                             <span className='channelpage_user_media'>
-                                <span className='channelpage_subs'>{parseSubsToString(Number(channelUser?.subscribersCount))}</span>
+                                <span className='channelpage_subs'>{parseSubsToString(Number(channelUser.subscribersCount))}</span>
                                 &nbsp;&nbsp;
                                 <span className='channelpage_videoCount'>{videoCount} видео</span>
                             </span>
@@ -67,7 +68,6 @@ function ChannelPage () {
                 {videos.length
                     ? <VideoGridbox className='channelpage_videogrid' videos={videos} />
                     : <div className='channelpage_empty'>Пока здесь ничего нет :(</div>
-
                 }
             </div>
         </div>
