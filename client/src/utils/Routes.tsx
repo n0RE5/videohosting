@@ -2,7 +2,7 @@ import AuthPage from "../pages/AuthPage";
 import ChannelPage from "../pages/ChannelPage";
 import MainPage from "../pages/MainPage";
 import SearchPage from "../pages/SearchPage";
-import StudioPage from "../pages/StudioPage";
+import StudioMainPage from "../pages/StudioPages/StudioMainPage";
 import WatchPage from "../pages/WatchPage";
 import { AUTH_PATH, CHANNEL_PATH, MAIN_PATH, SEARCH_PATH, STUDIO_PATH, WATCH_PATH } from "./Consts";
 
@@ -14,7 +14,7 @@ interface IRoutes {
 export const auth_routes: IRoutes[] = [
     {
         path: STUDIO_PATH,
-        element: <StudioPage />
+        element: <StudioMainPage />
     },
 ]
 
