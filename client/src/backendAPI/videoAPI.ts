@@ -9,7 +9,7 @@ interface countedVideos {
     rows: IVideo[]
 }
 
-export const createVideo = async (dto: CreateVideoDto) => {
+export const createVideo = async (dto: any) => {
     const response = await $authHost.post('video', dto)
     return response
 }

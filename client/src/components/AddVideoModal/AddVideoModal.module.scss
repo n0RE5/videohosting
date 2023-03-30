@@ -1,0 +1,115 @@
+@import '../../styles/variables.scss';
+
+.videomodal {
+    width: 900px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+    align-items: center;
+    height: 60px;
+    border-bottom: 1px solid $transparent;
+}
+
+.header_title {
+    width: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: white;
+}
+
+.body {
+    padding: 28px;
+}
+
+.body_info {
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: white;
+}
+
+.body_inputs {
+    flex: 1;
+    margin-right: 24px;
+    >:nth-child(2) {
+        margin: 24px 0;
+    }
+}
+
+.body_media {
+    display: flex;
+}
+
+.body_selectfile {
+    flex: 0 1 240px;
+    :first-child {
+        margin-bottom: 16px;
+    }
+}
+
+.selectfile {
+    display: block;
+    width: 100%;
+    position: relative;
+    &::before {
+        display: flex;
+        content: "";
+        height: 100%;
+        width: 100%;
+        padding-top: 56.25%;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+}
+
+.selectfile_w {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    transition: all .15s ease-in;
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $tiny;
+    &:hover {
+        filter: brightness(0.3);
+        cursor: pointer;
+    }
+}
+
+.footer {
+    padding: 28px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid $transparent;
+    justify-content: space-between;
+    height: 60px;
+}
+
+.footer_btn {
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: all .15s ease-in;
+    background-color: $blue_hover;
+    font-weight: 500;
+    display: flex;
+    border: none;
+    padding: 15px 20px;
+    &:hover {
+        cursor: pointer;
+        background-color: $blue;
+    }
+}
