@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { createVideo } from '../../backendAPI/videoAPI';
+import Loader from '../UI/Loader/Loader';
 import Modal from '../UI/Modal/Modal';
 import Textarea from '../UI/Textarea/Textarea';
 import styles from './AddVideoModal.module.scss'
@@ -15,6 +16,7 @@ const AddVideoModal: React.FC<AddVideoModalProps> = ({visible, setActive}) => {
     const [preview, setPreview] = useState<string>('')
     const [tags, setTags] = useState<string>('')
     const [video, setVideo] = useState<string>('')
+    const [videoUploading, setVideoUploading] = useState<boolean>(false)
 
     const selectFile = (e: any, func: (arg0: any) => void) => {
         func(e.target.files[0])
@@ -29,8 +31,10 @@ const AddVideoModal: React.FC<AddVideoModalProps> = ({visible, setActive}) => {
             formData.append('tags', tags)
             formData.append('filez', preview)
             formData.append('filez', video)
+            setVideoUploading(true)
             const response = await createVideo(formData)
             if (response.status === 201) {
+                setVideoUploading(false)
                 alert('You uploaded a video!')
                 setActive(false)
             }
@@ -70,7 +74,10 @@ const AddVideoModal: React.FC<AddVideoModalProps> = ({visible, setActive}) => {
                     </div>
                 </div>
                 <div className={styles.footer}>
-                    <div></div>
+                    {videoUploading
+                        ? <Loader />
+                        : <div />
+                    }
                     <button onClick={uploadVideo} className={styles.footer_btn}>Далее</button>
                 </div>
             </form>
