@@ -11,6 +11,7 @@ import { parseSubsToString } from '../utils/Parsers';
 import '../styles/channelpage.scss'
 import { useSubscriptions } from '../hooks/useSubscriptions';
 import { fetchedUserPlacehoder } from '../utils/Placeholders';
+import DefaultContainer from '../components/DefaultContainer/DefaultContainer';
 
 function ChannelPage () {
     const param = useParams()
@@ -36,41 +37,43 @@ function ChannelPage () {
     }
 
     return (
-        <div className='channelpage'>
-            <div className="channelpage_w">
-                <div className='channelpage_usermeta'>
-                    <Avatar large channelId={Number(param?.userId)} profileImg={channelUser.profileImg} />
-                    <div className='channelpage_usercontainer'>
-                        <div className='channelpage_user'>
-                            <div className='channelpage_username'>@{channelUser.username}</div>
-                            <span className='channelpage_user_media'>
-                                <span className='channelpage_subs'>{parseSubsToString(Number(channelUser.subscribersCount))}</span>
-                                &nbsp;&nbsp;
-                                <span className='channelpage_videoCount'>{videoCount} видео</span>
-                            </span>
+        <DefaultContainer>
+            <div className='channelpage'>
+                <div className="channelpage_w">
+                    <div className='channelpage_usermeta'>
+                        <Avatar large channelId={Number(param?.userId)} profileImg={channelUser.profileImg} />
+                        <div className='channelpage_usercontainer'>
+                            <div className='channelpage_user'>
+                                <div className='channelpage_username'>@{channelUser.username}</div>
+                                <span className='channelpage_user_media'>
+                                    <span className='channelpage_subs'>{parseSubsToString(Number(channelUser.subscribersCount))}</span>
+                                    &nbsp;&nbsp;
+                                    <span className='channelpage_videoCount'>{videoCount} видео</span>
+                                </span>
+                            </div>
+                            <button
+                                onClick={() => {
+                                    if(isSubscribed) {
+                                        unsubscribe()
+                                    } else {
+                                        subscribe()
+                                    }
+                                }}
+                                data-subscribed={isSubscribed}
+                                className='channelpage_subscribe'
+                            >
+                                {isSubscribed ? "Вы подписанны" : "Подписаться"}
+                            </button>
                         </div>
-                        <button
-                            onClick={() => {
-                                if(isSubscribed) {
-                                    unsubscribe()
-                                } else {
-                                    subscribe()
-                                }
-                            }}
-                            data-subscribed={isSubscribed}
-                            className='channelpage_subscribe'
-                        >
-                            {isSubscribed ? "Вы подписанны" : "Подписаться"}
-                        </button>
                     </div>
+                    <hr className='channelpage_hr'/>
+                    {videos.length
+                        ? <VideoGridbox className='channelpage_videogrid' videos={videos} />
+                        : <div className='channelpage_empty'>Пока здесь ничего нет :(</div>
+                    }
                 </div>
-                <hr className='channelpage_hr'/>
-                {videos.length
-                    ? <VideoGridbox className='channelpage_videogrid' videos={videos} />
-                    : <div className='channelpage_empty'>Пока здесь ничего нет :(</div>
-                }
             </div>
-        </div>
+        </DefaultContainer>
     );
 };
 

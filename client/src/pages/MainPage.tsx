@@ -6,6 +6,7 @@ import VideoItem from '../components/VideoItem/VideoItem';
 import { useFetching } from '../hooks/useFetching';
 import { IVideo } from '../types/Interfaces';
 import '../styles/mainpage.scss'
+import DefaultContainer from '../components/DefaultContainer/DefaultContainer';
 
 function MainPage () {
     const [videos, setVideos] = useState<IVideo[]>([])
@@ -21,14 +22,16 @@ function MainPage () {
     }, [])
 
     return (
-        <div>
-            {isFetching
-                ? <Loader />
-                : <div className='mainpage_videogrid'>
-                    <VideoGridbox videos={videos}/>
-                  </div>
-            }
-        </div>
+        <DefaultContainer>
+            <div className='mainpage'>
+                {isFetching
+                    ? <Loader />
+                    : <div className='mainpage_videogrid'>
+                        <VideoGridbox videos={videos}/>
+                    </div>
+                }
+            </div>
+        </DefaultContainer>
     );
 };
 

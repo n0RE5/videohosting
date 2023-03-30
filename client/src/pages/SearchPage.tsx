@@ -6,6 +6,7 @@ import VideoGridbox from '../components/VideoGridbox/VideoGridbox';
 import { useFetching } from '../hooks/useFetching';
 import { IVideo } from '../types/Interfaces';
 import '../styles/searchpage.scss'
+import DefaultContainer from '../components/DefaultContainer/DefaultContainer';
 
 function SearchPage() {
     const [params] = useSearchParams()
@@ -26,21 +27,23 @@ function SearchPage() {
     }
 
     return (
-        <div className='searchpage'>
-            <div className="searchpage_w">
-                {videos.length 
-                    ? <div className='searchpage_found'>По запросу "{query}" Найдено:</div>
-                    : null
-                }
-                <hr className='searchpage_hr'/>
-                {videos.length
-                    ? <div className='searchpage_videogrid'>
-                        <VideoGridbox vertical={true} videos={videos}/>
-                    </div>
-                    : <div className='searchpage_notfound'>По вашему запросу ничего не найдено :(</div>
-                }
+        <DefaultContainer>
+            <div className='searchpage'>
+                <div className="searchpage_w">
+                    {videos.length 
+                        ? <div className='searchpage_found'>По запросу "{query}" Найдено:</div>
+                        : null
+                    }
+                    <hr className='searchpage_hr'/>
+                    {videos.length
+                        ? <div className='searchpage_videogrid'>
+                            <VideoGridbox vertical={true} videos={videos}/>
+                        </div>
+                        : <div className='searchpage_notfound'>По вашему запросу ничего не найдено :(</div>
+                    }
+                </div>
             </div>
-        </div>
+        </DefaultContainer>
     );
 };
 
