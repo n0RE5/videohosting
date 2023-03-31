@@ -18,7 +18,7 @@ const Searchbar: React.FC = () => {
             <div className={styles.search_input}>
                 <input className={styles.searchbar_input} value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} type="text" placeholder='Введите запрос' required  />
             </div>
-            <button onClick={redirect} className={styles.searchbar_btn}>S</button>
+            <button onClick={redirect} className={styles.searchbar_btn}><span className={styles.search_icon}/></button>
         </form>
     );
 };

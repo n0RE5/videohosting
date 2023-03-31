@@ -40,8 +40,23 @@
     border-left: hsl(0, 0%, 18.82%);
     background: none;
     color: white;
-    padding: 0 15px;
+    padding: 0 12px;
     &:hover {
         cursor: pointer;
+    }
+}
+
+.search_icon {
+    &::before {
+        content: "";
+        display: flex;
+        width: 25px;
+        height: 25px;
+        background: url('../../assets/imgs/search.png') no-repeat center;
+        background-size: contain;
+        filter: invert(1);
+        &:hover {
+            filter: invert(0.7);
+        }
     }
 }
