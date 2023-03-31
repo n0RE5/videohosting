@@ -1,0 +1,50 @@
+@import './variables.scss';
+
+.subspage_w {
+    margin-top: 16px;
+    width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.subspage_empty {
+    font-weight: 500;
+    font-size: 1.2rem;
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+
+.subspage_grid {
+    width: 100%;
+    display: grid;
+    gap: 16px;
+    row-gap: 32px;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, 128px);
+}
+
+.subspage_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subspage_item_username {
+    text-decoration: none;
+    transition: all .15s ease-in;
+    margin-top: 4px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: white;
+    &:hover {
+        cursor: pointer;
+        color: $tiny;
+    }
+}
+
+.subspage_item_subs {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: $tiny;
+}
