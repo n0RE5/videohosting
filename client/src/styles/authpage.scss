@@ -11,6 +11,13 @@
     display: flex;
 }
 
+.authpage_error {
+    width: 100%;
+    text-align: center;
+    color: $tiny;
+    margin-top: 24px;
+}
+
 .authpage_w {
     display: flex;
     flex-direction: column;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login, registration } from '../backendAPI/userAPI';
 import Input from '../components/UI/Input/Input';
-import { useAppDispatch } from '../hooks/useReduxHooks';
+import { useAppDispatch, useAppSelector } from '../hooks/useReduxHooks';
 import { fetchUser, fetchUserError, fetchUserSuccess } from '../store/reducers/UserSlice';
 import '../styles/authpage.scss'
 import { IUser } from '../types/Interfaces';
@@ -15,6 +15,7 @@ function AuthPage() {
     const [username, setUsername] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const [email, setEmail] = useState<string>('')
+    const [loginError, setLoginError] = useState<string>('')
 
     const auth = async (e: React.MouseEvent) => {
         try {
@@ -27,10 +28,16 @@ function AuthPage() {
                 response = await registration({username, email, password})
             }
             dispatch(fetchUserSuccess(response))
-            return navigate(MAIN_PATH)
+            navigate(MAIN_PATH)
         } catch (error: any) {
             dispatch(fetchUserError(error.response?.data?.message))
+            setLoginError(error.response?.data?.message)
         }
+    }
+
+    const switchAuth = () => {
+        setAuthType((prev) => !prev)
+        setLoginError('')
     }
 
     return (
@@ -52,10 +59,13 @@ function AuthPage() {
                     <Input value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <button onClick={auth} className='authpage_auth'>{authType ? "Войти" : "Зарегистрироваться"}</button>
+                {loginError &&
+                    <div className='authpage_error'>{loginError}</div>
+                }
                 <div className='authpage_authtype'>
                     <span>
                         {authType ? "Нет аккаунта?" : "Есть Аккаунт?" }
-                        <a onClick={() => setAuthType((prev) => !prev)}> 
+                        <a onClick={() => switchAuth()}> 
                             {authType ? " Зарегистрируйтесь " : " Войти " } 
                         </a>
                     </span> 
