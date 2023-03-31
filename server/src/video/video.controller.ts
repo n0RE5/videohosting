@@ -49,4 +49,11 @@ export class VideoController {
     search(@Body() dto: SearchVideoDto) {
         return this.videoService.searchVideos(dto)
     }
+
+    @ApiOperation({summary: "Add video view"})
+    @ApiResponse({status: 200, type: Video})
+    @Get('/views/:id')
+    update(@Param('id') id: number) {
+        return this.videoService.addView(id)
+    }
 }

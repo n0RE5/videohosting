@@ -102,4 +102,13 @@ export class VideoService {
         })
         return videos
     }
+
+    async addView(id: number) {
+        const video = await this.videoRepository.findOne({where: {id}})
+        if (!video) {
+            throw new HttpException("Video doesn't exists", HttpStatus.BAD_REQUEST)
+        }
+        await video.update({views: video.views + 1})
+        return video
+    }
 }
