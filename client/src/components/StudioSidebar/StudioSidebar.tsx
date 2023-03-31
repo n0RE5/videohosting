@@ -18,6 +18,7 @@ const StudioSidebar: React.FC = () => {
                 </div>
                 <div className={styles.sidebar_link_container}>
                     <StudioSidebarLink to={STUDIO_PATH}>Главная</StudioSidebarLink>
+                    <StudioSidebarLink to={STUDIO_PATH + '/settings'}>Настройки</StudioSidebarLink>
                 </div>
             </div>
         </div>
