@@ -27,7 +27,7 @@ function SearchPage() {
     }
 
     return (
-        <DefaultContainer>
+        <DefaultContainer appTitle={`${query} - YouVI`}>
             <div className='searchpage'>
                 <div className="searchpage_w">
                     {videos.length 

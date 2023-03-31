@@ -37,7 +37,7 @@ function ChannelPage () {
     }
 
     return (
-        <DefaultContainer>
+        <DefaultContainer appTitle={`${channelUser.username} - YouVI`}>
             <div className='channelpage'>
                 <div className="channelpage_w">
                     <div className='channelpage_usermeta'>
