@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
         <div className={styles.navbar}>
             <div className={styles.navbar_logobox}>
                 <Burger />
-                <Link to={MAIN_PATH} className={styles.navbar_logo}>YuVid</Link>
+                <Link to={MAIN_PATH} className={styles.navbar_logo}>YouVI</Link>
             </div>
             <Searchbar />
             <div className={styles.navbar_auth}>
