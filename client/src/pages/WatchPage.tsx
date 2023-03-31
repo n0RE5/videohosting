@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { checkSubscription, subscribeToUser, unsubscribeFromUser } from '../backendAPI/subscribtionsAPI';
 import { getById } from '../backendAPI/userAPI';
-import { getVideo, getVideosFromUser } from '../backendAPI/videoAPI';
+import { addView, getVideo, getVideosFromUser } from '../backendAPI/videoAPI';
 import DefaultContainer from '../components/DefaultContainer/DefaultContainer';
 import Avatar from '../components/UI/Avatar/Avatar';
 import Loader from '../components/UI/Loader/Loader';
@@ -31,6 +31,7 @@ function WatchPage() {
         setVideo(video)
         const videoOwner = await getById(video.userId)
         setVideoOwner(videoOwner)
+        const addVideoView = await addView(video.id)
     })
 
     useEffect(() => {

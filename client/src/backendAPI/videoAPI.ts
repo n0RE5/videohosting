@@ -32,5 +32,9 @@ export const searchVideos = async (dto: SearchVideoDto) => {
 export const getVideos = async (dto: VideoDto): Promise<IVideo[]> => {
     const response = await $host.post(`video/videos`, dto)
     return response.data
+}
 
+export const addView = async (id: number) => {
+    const response = await $host.get(`video/views/${id}`)
+    return response
 }
