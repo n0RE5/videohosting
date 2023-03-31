@@ -7,9 +7,11 @@ import { useFetching } from '../hooks/useFetching';
 import { IVideo } from '../types/Interfaces';
 import '../styles/mainpage.scss'
 import DefaultContainer from '../components/DefaultContainer/DefaultContainer';
+import VideoSort from '../components/VideoSort/VideoSort';
 
 function MainPage () {
     const [videos, setVideos] = useState<IVideo[]>([])
+    const [sortedVideos, setSortedVideos] = useState<IVideo[]>(videos)
 
     const [fetchVideos, isFetching] = useFetching(async () => {
         const res = await getVideos({limit: 10, page: 1})
@@ -22,15 +24,19 @@ function MainPage () {
     }, [])
 
     return (
-        <DefaultContainer>
+        <DefaultContainer appTitle='YouVI'>
             <div className='mainpage'>
                 {isFetching
                     ? <Loader />
                     : <div className='mainpage_videogrid'>
-                        <VideoGridbox videos={videos}/>
+                        {sortedVideos.length
+                            ? <VideoGridbox videos={sortedVideos}/>
+                            : <div className='mainpage_notfound'>По вашему запросу ничего не найдено :(</div>
+                        }
                     </div>
                 }
             </div>
+            <VideoSort setSortedList={setSortedVideos} defaultList={videos} />
         </DefaultContainer>
     );
 };
