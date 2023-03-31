@@ -37,4 +37,10 @@ export class SubscriptionsService {
         }
         return true
     }
+
+    async getUserSubscriptions(req: any) {
+        const userSub = await this.subRepository.findOne({where: {userId: req.user.id}})
+        const subs = await this.subscriptionRepository.findAll({where: {subscriptionId: userSub.id}})
+        return subs
+    }
 }
