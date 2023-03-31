@@ -21,6 +21,11 @@ export const check = async (): Promise<IUser> => {
     return jwt_decode(response.data)
 }
 
+export const changePassword = async(dto: userDTO, newPassword: string) => {
+    const response = await $authHost.post('auth/changepassword', {userDto: dto, newPassword})
+    return response
+}
+
 export const getById = async (id: number): Promise<fetchedUser> => {
     const response = await $host.get(`/users/${id}`)
     return response.data
