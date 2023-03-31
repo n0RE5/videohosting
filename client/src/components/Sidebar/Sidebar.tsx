@@ -33,7 +33,7 @@ const Sidebar: React.FC = () => {
                     <SidebarLink to={MAIN_PATH + '?s=films'}>Фильмы</SidebarLink>
                 </div>
                 <div className={styles.sidebar_container}>
-                    <SidebarLink to={`${STUDIO_PATH}/settings`}>Настройки</SidebarLink>
+                    <SidebarLink to={isAuth ? STUDIO_PATH + '/settings' : AUTH_PATH}>Настройки</SidebarLink>
                     <SidebarLink to={`mailto:${CONTACT_MAIL}`}>Связаться с нами</SidebarLink>
                     <SidebarLink to={isAuth ? STUDIO_PATH : AUTH_PATH}>Ваш канал</SidebarLink>
                     {isAuth &&
