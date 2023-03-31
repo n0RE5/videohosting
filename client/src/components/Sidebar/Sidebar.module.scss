@@ -28,3 +28,20 @@
     font-size: 14px;
     color: $tiny;
 }
+
+.logout {
+    transition: all .15s ease-in;
+    text-decoration: none;
+    color: $blue;
+    display: flex;
+    border-radius: 10px;
+    padding: 16px 16px;
+    background-color: $dark;
+    font-weight: 700;
+    width: 100%;
+    &:hover {
+        background-color: $blue;
+        color: white;
+        cursor: pointer;
+    }
+}
