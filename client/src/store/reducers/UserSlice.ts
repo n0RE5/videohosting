@@ -19,7 +19,7 @@ const initUser: IUser = {
 const initialState: userState = {
     user: initUser,
     isAuth: false,
-    isLoading: false,
+    isLoading: true,
     error: ''
 }
 
@@ -50,4 +50,4 @@ const userSlice = createSlice({
 })
 
 export default userSlice.reducer
-export const {fetchUser, fetchUserSuccess, fetchUserError} = userSlice.actions
+export const {fetchUser, fetchUserSuccess, fetchUserError, userLogout} = userSlice.actions
