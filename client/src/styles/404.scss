@@ -1,0 +1,28 @@
+@import './variables.scss';
+
+.p404 {
+    margin-top: 20px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.err_404 {
+    font-size: 64px;
+    color: white;
+    font-weight: 700;
+}
+
+.p404_title {
+    color: $tiny;
+    a {
+        text-decoration: none;
+        transition: all .15s ease-in;
+        color: $blue;
+        &:hover {
+            color: $blue_hover;
+        }
+    }
+}
