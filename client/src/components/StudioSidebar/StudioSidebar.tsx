@@ -1,11 +1,22 @@
 import React from 'react';
-import { useAppSelector } from '../../hooks/useReduxHooks';
-import { STUDIO_PATH } from '../../utils/Consts';
+import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHooks';
+import { MAIN_PATH, STUDIO_PATH } from '../../utils/Consts';
 import StudioSidebarLink from '../UI/StudioSidebarLink/StudioSidebarLink';
 import styles from './StudioSidebar.module.scss'
+import { useNavigate } from 'react-router-dom';
+import { userLogout } from '../../store/reducers/UserSlice';
 
 const StudioSidebar: React.FC = () => {
     const user = useAppSelector(state => state.userSlice.user)
+    const navigate = useNavigate()
+    const dispatch = useAppDispatch()
+
+    const logout = () => {
+        localStorage.removeItem('token')
+        dispatch(userLogout())
+        navigate(MAIN_PATH)    
+    }
+
     return (
         <div className={styles.sidebar}>
             <div className={styles.sidebar_w}>
@@ -19,6 +30,7 @@ const StudioSidebar: React.FC = () => {
                 <div className={styles.sidebar_link_container}>
                     <StudioSidebarLink to={STUDIO_PATH}>Главная</StudioSidebarLink>
                     <StudioSidebarLink to={STUDIO_PATH + '/settings'}>Настройки</StudioSidebarLink>
+                    <a onClick={logout} className={styles.sidebar_logout}>Выйти</a>
                 </div>
             </div>
         </div>
