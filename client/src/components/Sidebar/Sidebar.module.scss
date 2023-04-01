@@ -30,6 +30,7 @@
 }
 
 .logout {
+    align-items: center;
     transition: all .15s ease-in;
     text-decoration: none;
     color: $blue;
@@ -44,4 +45,12 @@
         color: white;
         cursor: pointer;
     }
+}
+
+.link_img {
+    filter: invert(1);
+    margin-right: 24px;
+    display: flex;
+    width: 26px;
+    height: 26px;
 }

@@ -6,6 +6,17 @@ import { AUTH_PATH, CONTACT_MAIL, MAIN_PATH, STUDIO_PATH, SUBSCRIPTIONS_PATH } f
 import SidebarLink from '../UI/SidebarLink/SidebarLink';
 import styles from './Sidebar.module.scss'
 import { userLogout } from '../../store/reducers/UserSlice';
+import settingsSVG from '../../assets/svg/settings.svg';
+import channelSVG from '../../assets/svg/channel.svg';
+import contactSVG from '../../assets/svg/contact.svg';
+import homeSVG from '../../assets/svg/home.svg';
+import logoutSVG from '../../assets/svg/logout.svg';
+import subsSVG from '../../assets/svg/subs.svg';
+import noteSVG from '../../assets/svg/note.svg';
+import fireSVG from '../../assets/svg/fire.svg';
+import joystickSVG from '../../assets/svg/joystick.svg';
+import swordSVG from '../../assets/svg/sword.svg';
+import filmSVG from '../../assets/svg/film.svg';
 
 const Sidebar: React.FC = () => {
     const isAuth = useAppSelector(state => state.userSlice.isAuth)
@@ -22,22 +33,22 @@ const Sidebar: React.FC = () => {
         <div className={styles.sidebar}>
             <div className={styles.sidebar_w}>
                 <div className={styles.sidebar_container}>
-                    <SidebarLink to={MAIN_PATH}>Главная</SidebarLink>
-                    <SidebarLink to={isAuth ? SUBSCRIPTIONS_PATH : AUTH_PATH}>Подписки</SidebarLink>
+                    <SidebarLink src={homeSVG} to={MAIN_PATH}>Главная</SidebarLink>
+                    <SidebarLink src={subsSVG} to={isAuth ? SUBSCRIPTIONS_PATH : AUTH_PATH}>Подписки</SidebarLink>
                 </div>
                 <div className={styles.sidebar_container}>
-                    <SidebarLink to={MAIN_PATH + '?s=all'}>Все</SidebarLink>
-                    <SidebarLink to={MAIN_PATH + '?s=games'}>Видеоигры</SidebarLink>
-                    <SidebarLink to={MAIN_PATH + '?s=music'}>Музыка</SidebarLink>
-                    <SidebarLink to={MAIN_PATH + '?s=cartoons'}>Мультфильмы</SidebarLink>
-                    <SidebarLink to={MAIN_PATH + '?s=films'}>Фильмы</SidebarLink>
+                    <SidebarLink src={fireSVG} to={MAIN_PATH + '?s=all'}>Все</SidebarLink>
+                    <SidebarLink src={joystickSVG} to={MAIN_PATH + '?s=games'}>Видеоигры</SidebarLink>
+                    <SidebarLink src={noteSVG} to={MAIN_PATH + '?s=music'}>Музыка</SidebarLink>
+                    <SidebarLink src={swordSVG} to={MAIN_PATH + '?s=cartoons'}>Мультфильмы</SidebarLink>
+                    <SidebarLink src={filmSVG} to={MAIN_PATH + '?s=films'}>Фильмы</SidebarLink>
                 </div>
                 <div className={styles.sidebar_container}>
-                    <SidebarLink to={isAuth ? STUDIO_PATH + '/settings' : AUTH_PATH}>Настройки</SidebarLink>
-                    <SidebarLink to={`mailto:${CONTACT_MAIL}`}>Связаться с нами</SidebarLink>
-                    <SidebarLink to={isAuth ? STUDIO_PATH : AUTH_PATH}>Ваш канал</SidebarLink>
+                    <SidebarLink src={settingsSVG} to={isAuth ? STUDIO_PATH + '/settings' : AUTH_PATH}>Настройки</SidebarLink>
+                    <SidebarLink src={contactSVG} to={`mailto:${CONTACT_MAIL}`}>Связаться с нами</SidebarLink>
+                    <SidebarLink src={channelSVG} to={isAuth ? STUDIO_PATH : AUTH_PATH}>Ваш канал</SidebarLink>
                     {isAuth &&
-                        <a onClick={logout} className={styles.logout}>Выйти</a>
+                        <a onClick={logout} className={styles.logout}><img src={logoutSVG} className={styles.link_img}/>Выйти</a>
                     }
                 </div>
                 <div className={styles.sidebar_container}>
