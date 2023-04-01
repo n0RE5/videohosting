@@ -7,6 +7,8 @@ import Avatar from '../components/UI/Avatar/Avatar';
 import { parseSubsToString } from '../utils/Parsers';
 import '../styles/subspage.scss'
 import Loader from '../components/UI/Loader/Loader';
+import { Link } from 'react-router-dom';
+import { CHANNEL_PATH } from '../utils/Consts';
 
 function SubsPage() {
     const [userSubs, setUserSubs] = useState<fetchedUser[]>([])
@@ -32,7 +34,7 @@ function SubsPage() {
                         {userSubs.map(sub =>
                             <div className='subspage_item'>
                                 <Avatar large channelId={sub.id} profileImg={sub.profileImg} />
-                                <div className='subspage_item_username'>{sub.username}</div>
+                                <Link to={CHANNEL_PATH + `/${sub.id}`} className='subspage_item_username'>{sub.username}</Link>
                                 <div className='subspage_item_subs'>{parseSubsToString(Number(sub.subscribersCount))}</div>
                             </div>
                         )}
