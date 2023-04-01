@@ -35,7 +35,8 @@ export class VideoService {
                     attributes: []
                 }
             ],
-            group: ['Video.id']
+            group: ['Video.id'],
+            order: [['createdAt', 'DESC']]
         })
         return video
     }
@@ -55,7 +56,8 @@ export class VideoService {
                         attributes: []
                     }
                 ],
-                group: ['Video.id']
+                group: ['Video.id'],
+                order: [['createdAt', 'DESC']]
             })
         } else {
             videos = await this.videoRepository.findAndCountAll({
@@ -71,7 +73,8 @@ export class VideoService {
                         attributes: []
                     }
                 ],
-                group: ['Video.id']
+                group: ['Video.id'],
+                order: [['createdAt', 'DESC']]
             })
         }
         return videos
@@ -82,13 +85,15 @@ export class VideoService {
         let videos;
         if (dto.limit === 0) {
             videos = this.videoRepository.findAll({
-                where: {title: { [Op.like]: '%' + dto.searchQuery + '%' }}
+                where: {title: { [Op.like]: '%' + dto.searchQuery + '%' }},
+                order: [['views', 'DESC']]
             })
         } else {
             videos = this.videoRepository.findAll({
                 where: {title: { [Op.like]: '%' + dto.searchQuery + '%' }},
                 limit: dto.limit,
-                offset
+                offset,
+                order: [['views', 'DESC']]
             })
         }
         return videos
@@ -98,7 +103,8 @@ export class VideoService {
         let offset = dto.page * dto.limit - dto.limit
         const videos = this.videoRepository.findAll({
             limit: dto.limit,
-            offset
+            offset,
+            order: [['views', 'DESC']]
         })
         return videos
     }
