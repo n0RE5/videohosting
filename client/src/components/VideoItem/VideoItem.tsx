@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './VideoItem.module.scss'
 import { fetchedUser, IVideo } from '../../types/Interfaces';
 import { Link } from 'react-router-dom';
@@ -17,10 +17,10 @@ interface VideoItemProps {
 const VideoItem: React.FC<VideoItemProps> = ({video, vertical}) => {
     const [user, setUser] = useState<fetchedUser>(fetchedUserPlacehoder)
 
-    const fetchUser = async () => {
+    const fetchUser = useCallback(async () => {
         const user = await getById(video.userId)
         setUser(user)
-    }
+    }, [video.userId])
 
     useEffect(() => {
         fetchUser()

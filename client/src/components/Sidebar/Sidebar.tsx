@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHooks';
@@ -18,7 +18,7 @@ import joystickSVG from '../../assets/svg/joystick.svg';
 import swordSVG from '../../assets/svg/sword.svg';
 import filmSVG from '../../assets/svg/film.svg';
 
-const Sidebar: React.FC = () => {
+const Sidebar = memo(() => {
     const isAuth = useAppSelector(state => state.userSlice.isAuth)
     const sidebarActive = useAppSelector(state => state.sidebarSlice.active)
     const navigate = useNavigate()
@@ -72,6 +72,6 @@ const Sidebar: React.FC = () => {
             </div>
         </div>
     );
-};
+});
 
 export default Sidebar;

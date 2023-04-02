@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { IVideo } from '../../types/Interfaces';
 import styles from 'VideoSort.module.scss'
 import { useSearchParams } from 'react-router-dom';
@@ -16,7 +16,7 @@ const VideoSort: React.FC<VideoSortProps> = ({defaultList, setSortedList}) => {
         return [...videos].filter(video => video.tags.includes(tag))
     }
 
-    const sort = () => {        
+    const sort = useCallback(() => {        
         switch (tsort) {
             case 'all':
                 setSortedList(defaultList)
@@ -37,7 +37,7 @@ const VideoSort: React.FC<VideoSortProps> = ({defaultList, setSortedList}) => {
                 setSortedList(defaultList)
                 break;
         }                
-    }
+    }, [tsort, defaultList])
 
     useEffect(() => {
         sort()

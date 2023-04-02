@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { IVideo } from '../../types/Interfaces';
 import VideoItem from '../VideoItem/VideoItem';
 import styles from './VideoGridbox.module.scss'
@@ -9,7 +9,7 @@ interface VideoGridboxProps {
     vertical?: boolean
 }
 
-const VideoGridbox: React.FC<VideoGridboxProps> = ({videos, className, vertical}) => {
+const VideoGridbox: React.FC<VideoGridboxProps> = memo(({videos, className, vertical}) => {
     return (
         <div data-vertical={vertical} className={[styles.videos, className].join(' ')}>
             {videos.map(video =>
@@ -17,6 +17,6 @@ const VideoGridbox: React.FC<VideoGridboxProps> = ({videos, className, vertical}
             )}
         </div>
     );
-};
+});
 
 export default VideoGridbox;

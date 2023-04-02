@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { CHANNEL_PATH } from '../../../utils/Consts';
 import styles from './Avatar.module.scss'
@@ -9,7 +9,7 @@ interface AvatarProps {
     large?: boolean
 }
 
-const Avatar: React.FC<AvatarProps> = ({channelId, profileImg, large}) => {
+const Avatar: React.FC<AvatarProps> = memo(({channelId, profileImg, large}) => {
     return (
         <Link to={`${CHANNEL_PATH}/${channelId}`} className={styles.avatar}>
             <div data-large={large} className={styles.avatar_container}>
@@ -17,6 +17,6 @@ const Avatar: React.FC<AvatarProps> = ({channelId, profileImg, large}) => {
             </div>
         </Link>
     );
-};
+});
 
 export default Avatar;
