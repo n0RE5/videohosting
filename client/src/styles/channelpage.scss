@@ -12,6 +12,7 @@
 }
 
 .channelpage_usermeta {
+    margin: 4px;
     display: flex;
     margin-bottom: 24px;
 }
@@ -73,4 +74,18 @@
     color: white;
     text-align: center;
     font-weight: 500;
+}
+
+@media only screen and (min-width: 360px) and (max-width: 700px) {
+    .channelpage_usercontainer {
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+    }
+    .channelpage_user_media {
+        margin-top: 4px;
+    }
+    .channelpage_subscribe {
+        margin-top: 4px;
+    }
 }

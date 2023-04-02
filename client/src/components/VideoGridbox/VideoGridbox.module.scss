@@ -6,7 +6,7 @@
     gap: $video-grid-gap;
     row-gap: 32px;
     justify-content: center;
-    grid-template-columns: repeat($max-items-per-video-grid, calc(100% / $max-items-per-video-grid - $video-grid-gap));
+    grid-template-columns: repeat(auto-fit, 360px);
     &[data-vertical="true"] {
         display: flex;
         flex-direction: column;

@@ -7,10 +7,12 @@ import { useFetching } from '../hooks/useFetching';
 import { IVideo } from '../types/Interfaces';
 import '../styles/searchpage.scss'
 import DefaultContainer from '../components/DefaultContainer/DefaultContainer';
+import { useQuery } from '../hooks/useQuery';
 
 function SearchPage() {
     const [params] = useSearchParams()
     const [videos, setVideos] = useState<IVideo[]>([])
+    const isPC = useQuery("(max-width: 800px")
     const query = params.get('searchQuery') || ''
 
     const [fetchVideos, isFetching] = useFetching(async() => {
@@ -37,7 +39,7 @@ function SearchPage() {
                     <hr className='searchpage_hr'/>
                     {videos.length
                         ? <div className='searchpage_videogrid'>
-                            <VideoGridbox vertical={true} videos={videos}/>
+                            <VideoGridbox vertical={isPC} videos={videos}/>
                         </div>
                         : <div className='searchpage_notfound'>По вашему запросу ничего не найдено :(</div>
                     }
