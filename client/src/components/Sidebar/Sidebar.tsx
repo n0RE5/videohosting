@@ -20,8 +20,10 @@ import filmSVG from '../../assets/svg/film.svg';
 
 const Sidebar: React.FC = () => {
     const isAuth = useAppSelector(state => state.userSlice.isAuth)
+    const sidebarActive = useAppSelector(state => state.sidebarSlice.active)
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
+    const rootClasses = [styles.sidebar]
 
     const logout = () => {
         localStorage.removeItem('token')
@@ -29,8 +31,12 @@ const Sidebar: React.FC = () => {
         navigate(MAIN_PATH)    
     }
 
+    if(sidebarActive) {
+        rootClasses.push(styles.sidebar_active)
+    }
+
     return (
-        <div className={styles.sidebar}>
+        <div className={rootClasses.join(' ')}>
             <div className={styles.sidebar_w}>
                 <div className={styles.sidebar_container}>
                     <SidebarLink src={homeSVG} to={MAIN_PATH}>Главная</SidebarLink>

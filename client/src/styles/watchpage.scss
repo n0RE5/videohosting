@@ -25,7 +25,8 @@
 }
 
 .media_left {
-    width: 50%;
+    width: 100%;
+    max-width: 50%;
 }
 
 .media_left_w {
@@ -172,4 +173,26 @@
     font-size: 14px;
     color: white;
     white-space: normal;
+}
+
+@media only screen and (min-width: 360px) and (max-width: 450px) {
+    .user_subscribebtn {
+        margin-right: 4px;
+        font-size: 0.8rem;
+        padding: 8px 10px;
+    }
+    .user_subscribers {
+        font-size: 0.7rem;
+    }
+    .media_left {
+        margin: 0 15px;
+        max-width: 100%;
+    }
+}
+
+@media only screen and (min-width: 451px) and (max-width: 1200px) {
+    .media_left {
+        margin: 0 15px;
+        max-width: 100%;
+    }
 }

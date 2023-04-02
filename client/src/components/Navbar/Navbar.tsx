@@ -1,18 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../hooks/useReduxHooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHooks';
 import { AUTH_PATH, MAIN_PATH } from '../../utils/Consts';
 import Searchbar from '../Searchbar/Searchbar';
 import Avatar from '../UI/Avatar/Avatar';
 import Burger from '../UI/Burger/Burger';
 import styles from './Navbar.module.scss'
+import { switchState } from '../../store/reducers/SidebarSlice';
 
 const Navbar: React.FC = () => {
     const user = useAppSelector(state => state.userSlice)
+    const dispatch = useAppDispatch();
     return (
         <div className={styles.navbar}>
             <div className={styles.navbar_logobox}>
-                <Burger />
+                <Burger onClick={() => dispatch(switchState())} />
                 <Link to={MAIN_PATH} className={styles.navbar_logo}>YouVI</Link>
             </div>
             <Searchbar />
