@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login, registration } from '../backendAPI/userAPI';
 import Input from '../components/UI/Input/Input';
-import { useAppDispatch, useAppSelector } from '../hooks/useReduxHooks';
+import { useAppDispatch } from '../hooks/useReduxHooks';
 import { fetchUser, fetchUserError, fetchUserSuccess } from '../store/reducers/UserSlice';
-import '../styles/authpage.scss'
 import { IUser } from '../types/Interfaces';
 import { MAIN_PATH } from '../utils/Consts';
+import '../styles/authpage.scss'
 
 function AuthPage() {
     const navigate = useNavigate()
@@ -65,7 +65,7 @@ function AuthPage() {
                 <div className='authpage_authtype'>
                     <span>
                         {authType ? "Нет аккаунта?" : "Есть Аккаунт?" }
-                        <a onClick={() => switchAuth()}> 
+                        <a onClick={switchAuth}> 
                             {authType ? " Зарегистрируйтесь " : " Войти " } 
                         </a>
                     </span> 
