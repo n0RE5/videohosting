@@ -1,6 +1,5 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { IVideo } from '../../types/Interfaces';
-import styles from 'VideoSort.module.scss'
 import { useSearchParams } from 'react-router-dom';
 
 interface VideoSortProps {
@@ -16,31 +15,29 @@ const VideoSort: React.FC<VideoSortProps> = ({defaultList, setSortedList}) => {
         return [...videos].filter(video => video.tags.includes(tag))
     }
 
-    const sort = useCallback(() => {        
+    const sort = useMemo(() => {
+        let sortedList: IVideo[] = [];      
         switch (tsort) {
             case 'all':
-                setSortedList(defaultList)
+                sortedList = defaultList
                 break;
             case 'games':
-                setSortedList(filterTags(defaultList, '#games'))
+                sortedList = filterTags(defaultList, '#games')
                 break;
             case 'music':
-                setSortedList(filterTags(defaultList, '#music'))
+                sortedList = filterTags(defaultList, '#music')
                 break;
             case 'cartoons':
-                setSortedList(filterTags(defaultList, '#cartoons'))
+                sortedList = filterTags(defaultList, '#cartoons')
                 break;
             case 'films':
-                setSortedList(filterTags(defaultList, '#films'))
+                sortedList = filterTags(defaultList, '#films')
                 break;
             default:
-                setSortedList(defaultList)
+                sortedList = defaultList
                 break;
-        }                
-    }, [tsort, defaultList])
-
-    useEffect(() => {
-        sort()
+        }
+        setSortedList(sortedList)
     }, [tsort, defaultList])
 
     return (
