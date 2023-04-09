@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './VideoItem.module.scss'
 import { fetchedUser, IVideo } from '../../types/Interfaces';
 import { Link } from 'react-router-dom';
-import { useFetching } from '../../hooks/useFetching';
 import { getById } from '../../backendAPI/userAPI';
 import Avatar from '../UI/Avatar/Avatar';
 import { parseRawDate, parseViewsToString } from '../../utils/Parsers';
