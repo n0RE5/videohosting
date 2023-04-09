@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { getVideos } from '../backendAPI/videoAPI';
 import Loader from '../components/UI/Loader/Loader';
 import VideoGridbox from '../components/VideoGridbox/VideoGridbox';
-import VideoItem from '../components/VideoItem/VideoItem';
 import { useFetching } from '../hooks/useFetching';
 import { IVideo } from '../types/Interfaces';
-import '../styles/mainpage.scss'
 import DefaultContainer from '../components/DefaultContainer/DefaultContainer';
 import VideoSort from '../components/VideoSort/VideoSort';
+import '../styles/mainpage.scss'
 
 function MainPage () {
     const [videos, setVideos] = useState<IVideo[]>([])
