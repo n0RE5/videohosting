@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { checkSubscription, subscribeToUser, unsubscribeFromUser } from '../backendAPI/subscribtionsAPI';
 import { getById } from '../backendAPI/userAPI';
-import { addView, getVideo, getVideosFromUser } from '../backendAPI/videoAPI';
+import { addView, getVideo } from '../backendAPI/videoAPI';
 import DefaultContainer from '../components/DefaultContainer/DefaultContainer';
 import Avatar from '../components/UI/Avatar/Avatar';
 import Loader from '../components/UI/Loader/Loader';
 import { useFetching } from '../hooks/useFetching';
 import { useLikes } from '../hooks/useLikes';
-import { useAppSelector } from '../hooks/useReduxHooks';
 import { useSubscriptions } from '../hooks/useSubscriptions';
-import '../styles/watchpage.scss'
 import { fetchedUser, IVideo } from '../types/Interfaces';
 import { CHANNEL_PATH } from '../utils/Consts';
 import { parseRawDate, parseViewsToString } from '../utils/Parsers';
 import { fetchedUserPlacehoder, videoPlacehoder } from '../utils/Placeholders';
+import '../styles/watchpage.scss'
 
 function WatchPage() {
     const navigate = useNavigate()
@@ -22,16 +20,18 @@ function WatchPage() {
     const [video, setVideo] = useState<IVideo>(videoPlacehoder)
     const [videoOwner, setVideoOwner] = useState<fetchedUser>(fetchedUserPlacehoder)
     const [isLiked, like] = useLikes(video.id)
-    const [isSubscribed, subscribe, unsubscribe] = useSubscriptions(video.userId)
-    const user = useAppSelector(state => state.userSlice)
+    const [isSubscribed, subscribe] = useSubscriptions(video.userId)
     const videoURL = params.get('v')
+
+    const viewsString = parseViewsToString(video.views)
+    const createdAtString = parseRawDate(video.createdAt)
 
     const [fetchAll, isFetching, error] = useFetching(async() => {
         const video = await getVideo(Number(videoURL))
-        setVideo(video)
         const videoOwner = await getById(video.userId)
-        setVideoOwner(videoOwner)
         const addVideoView = await addView(video.id)
+        setVideo(video)
+        setVideoOwner(videoOwner)
     })
 
     useEffect(() => {
@@ -72,20 +72,14 @@ function WatchPage() {
                                                 <div className='user_subscribers'>{videoOwner.subscribersCount} подписчиков</div>
                                             </div>
                                             <button 
-                                                onClick={() => {
-                                                    if(isSubscribed) {
-                                                        unsubscribe()
-                                                    } else {
-                                                        subscribe()
-                                                    }
-                                                }}
+                                                onClick={subscribe}
                                                 className='user_subscribebtn'
                                             >
                                                 {isSubscribed ? "Вы подписанны" : "Подписаться"}
                                             </button>
                                         </div>
                                         <button 
-                                            onClick={() => like()} 
+                                            onClick={like} 
                                             disabled={isLiked} 
                                             data-liked={isLiked} 
                                             className='user_likebtn'
@@ -100,7 +94,11 @@ function WatchPage() {
                                 </div>
                                 <div className="media_videometa">
                                     <div className="media_videometa_w">
-                                        <div className='videometa_views'>{parseViewsToString(video.views)}&nbsp;&nbsp;<span>{parseRawDate(video.createdAt)}</span></div>
+                                        <div className='videometa_views'>
+                                            {viewsString}
+                                            &nbsp;&nbsp;
+                                            {createdAtString}
+                                        </div>
                                         <div className='video_description'>
                                             {video.description}
                                         </div>
