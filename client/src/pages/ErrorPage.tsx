@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import DefaultContainer from '../components/DefaultContainer/DefaultContainer';
 import '../styles/404.scss'
 import { MAIN_PATH } from '../utils/Consts';
 
