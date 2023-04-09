@@ -32,10 +32,7 @@ function SearchPage() {
         <DefaultContainer appTitle={`${query} - YouVI`}>
             <div className='searchpage'>
                 <div className="searchpage_w">
-                    {videos.length 
-                        ? <div className='searchpage_found'>По запросу "{query}" Найдено:</div>
-                        : null
-                    }
+                    {videos.length && <div className='searchpage_found'>По запросу "{query}" Найдено:</div>}
                     <hr className='searchpage_hr'/>
                     {videos.length
                         ? <div className='searchpage_videogrid'>
