@@ -5,10 +5,10 @@ import { useFetching } from '../hooks/useFetching';
 import { fetchedUser } from '../types/Interfaces';
 import Avatar from '../components/UI/Avatar/Avatar';
 import { parseSubsToString } from '../utils/Parsers';
-import '../styles/subspage.scss'
 import Loader from '../components/UI/Loader/Loader';
 import { Link } from 'react-router-dom';
 import { CHANNEL_PATH } from '../utils/Consts';
+import '../styles/subspage.scss'
 
 function SubsPage() {
     const [userSubs, setUserSubs] = useState<fetchedUser[]>([])
