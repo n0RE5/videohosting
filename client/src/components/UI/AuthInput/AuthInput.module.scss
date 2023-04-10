@@ -1,0 +1,14 @@
+@import '../../../styles/variables.scss';
+
+.authpage_inputbox {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+.authpage_label {
+    font-size: 14px;
+    font-weight: 700;
+    color: $silver;
+    margin: 0 0 6px;
+}
