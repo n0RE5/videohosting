@@ -37,7 +37,7 @@ function SearchPage() {
                     {videos.length
                         ? <div className='searchpage_videogrid'>
                             <VideoGridbox vertical={isPC} videos={videos}/>
-                        </div>
+                          </div>
                         : <div className='searchpage_notfound'>По вашему запросу ничего не найдено :(</div>
                     }
                 </div>
