@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import styles from './VideoItem.module.scss'
 import { fetchedUser, IVideo } from '../../types/Interfaces';
 import { Link } from 'react-router-dom';
@@ -10,23 +10,21 @@ import { fetchedUserPlacehoder } from '../../utils/Placeholders';
 
 interface VideoItemProps {
     video: IVideo
-    vertical?: boolean
 }
 
-const VideoItem: React.FC<VideoItemProps> = ({video, vertical}) => {
+const VideoItem: React.FC<VideoItemProps> = ({video}) => {
     const [user, setUser] = useState<fetchedUser>(fetchedUserPlacehoder)
 
-    const fetchUser = useCallback(async () => {
+    const viewsString = parseViewsToString(video.views)
+    const createdAt = parseRawDate(video.createdAt)
+
+    const fetchUser = useMemo(async () => {
         const user = await getById(video.userId)
         setUser(user)
     }, [video.userId])
 
-    useEffect(() => {
-        fetchUser()
-    }, [])
-
     return (
-        <div data-vertical={vertical} className={styles.video}>
+        <div className={styles.video}>
             <div className={styles.video_w}>
                 <span className={styles.video_preview}>
                     <Link to={`${WATCH_PATH}?v=${video.id}`} className={styles.video_preview_w}>
@@ -34,34 +32,20 @@ const VideoItem: React.FC<VideoItemProps> = ({video, vertical}) => {
                     </Link>
                 </span>
                 <div className={styles.video_details}>
-                    {vertical 
-                        ? null
-                        : <div className={styles.video_avatar}>
-                            <Avatar channelId={video.userId} profileImg={user.profileImg} />
-                          </div>
-                    }
+                    <div className={styles.video_avatar}>
+                        <Avatar channelId={video.userId} profileImg={user.profileImg} />
+                    </div>
                     <div className={styles.video_meta}>
                         <div className={styles.video_meta_title}>
                             <Link to={`${WATCH_PATH}?v=${video.id}`}>
                                 {video.title}
                             </Link>
                         </div>
-                        {vertical
-                            ? <div className={styles.video_verticaluser}>
-                                <div className={styles.video_avatar}>
-                                    <Avatar channelId={video.userId} profileImg={user.profileImg} />
-                                </div>
-                                <Link to={`${CHANNEL_PATH}/${video.userId}`} className={styles.video_meta_username}>{user.username}</Link>
-                              </div>
-                            : <Link to={`${CHANNEL_PATH}/${video.userId}`} className={styles.video_meta_username}>{user.username}</Link>
-                        }
+                            <Link to={`${CHANNEL_PATH}/${video.userId}`} className={styles.video_meta_username}>{user.username}</Link>
                         <div className={styles.video_metadata}>
-                            <span className={styles.video_views}>{parseViewsToString(video.views)}</span>
-                            <span className={styles.video_uploadDate}>{parseRawDate(video.createdAt)}</span>
+                            <span className={styles.video_views}>{viewsString}</span>
+                            <span className={styles.video_uploadDate}>{createdAt}</span>
                         </div>
-                        {vertical &&
-                             <span className={styles.video_description}>{video.description}</span>
-                        }
                     </div>
                 </div>
             </div>
