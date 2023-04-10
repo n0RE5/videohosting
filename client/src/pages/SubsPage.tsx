@@ -32,7 +32,7 @@ function SubsPage() {
                 {userSubs.length
                     ? <div className='subspage_grid'>
                         {userSubs.map(sub =>
-                            <div className='subspage_item'>
+                            <div key={sub.id} className='subspage_item'>
                                 <Avatar large channelId={sub.id} profileImg={sub.profileImg} />
                                 <Link to={CHANNEL_PATH + `/${sub.id}`} className='subspage_item_username'>{sub.username}</Link>
                                 <div className='subspage_item_subs'>{parseSubsToString(Number(sub.subscribersCount))}</div>
