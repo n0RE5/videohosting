@@ -7,6 +7,7 @@ import { fetchUser, fetchUserError, fetchUserSuccess } from '../store/reducers/U
 import { IUser } from '../types/Interfaces';
 import { MAIN_PATH } from '../utils/Consts';
 import '../styles/authpage.scss'
+import AuthInput from '../components/UI/AuthInput/AuthInput';
 
 function AuthPage() {
     const navigate = useNavigate()
@@ -45,30 +46,19 @@ function AuthPage() {
             <form className="authpage_w">
                 <div className='authpage_title'>{authType ? "Войти" : "Регистрация"}</div>
                 {!authType &&
-                    <div className='authpage_inputbox'>
-                        <div className='authpage_label'>Никнейм</div>
-                        <Input value={username} onChange={(e) => setUsername(e.target.value)} />
-                    </div>
+                    <AuthInput value={username} setValue={setUsername} label='Никнейм' />
                 }
-                <div className='authpage_inputbox'>
-                    <div className='authpage_label'>{authType ? "Введите электронную почту" : "Электронная почта"}</div>
-                    <Input value={email} onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                <div className='authpage_inputbox'>
-                    <div className='authpage_label'>{authType ? "Введите пароль" : "Пароль"}</div>
-                    <Input value={password} onChange={(e) => setPassword(e.target.value)} />
-                </div>
+                <AuthInput value={email} setValue={setEmail} label={authType ? "Введите электронную почту" : "Электронная почта"} />
+                <AuthInput value={password} setValue={setPassword} label={authType ? "Введите пароль" : "Пароль"} />
                 <button onClick={auth} className='authpage_auth'>{authType ? "Войти" : "Зарегистрироваться"}</button>
                 {loginError &&
                     <div className='authpage_error'>{loginError}</div>
                 }
                 <div className='authpage_authtype'>
-                    <span>
-                        {authType ? "Нет аккаунта?" : "Есть Аккаунт?" }
-                        <a onClick={switchAuth}> 
-                            {authType ? " Зарегистрируйтесь " : " Войти " } 
-                        </a>
-                    </span> 
+                    {authType ? "Нет аккаунта?" : "Есть Аккаунт?" }
+                    <a onClick={switchAuth}> 
+                        {authType ? " Зарегистрируйтесь " : " Войти " } 
+                    </a>
                 </div>
             </form>
         </div>
