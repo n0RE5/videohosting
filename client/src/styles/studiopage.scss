@@ -10,6 +10,10 @@
     padding: 24px;
 }
 
+.studiopage_cards {
+    display: flex;
+}
+
 .studiopage_title {
     font-size: 1.8rem;
     font-weight: 500;
@@ -18,6 +22,7 @@
 }
 
 .studiopage_main_card {
+    margin-right: 16px;
     border-radius: 10px;
     background-color: $transparent;
     width: 30vh;
