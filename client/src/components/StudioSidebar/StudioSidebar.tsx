@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHooks';
 import { MAIN_PATH, STUDIO_PATH } from '../../utils/Consts';
 import StudioSidebarLink from '../UI/StudioSidebarLink/StudioSidebarLink';
@@ -17,6 +17,17 @@ const StudioSidebar: React.FC = () => {
         navigate(MAIN_PATH)    
     }
 
+    const [sidebarLinks] = useState([
+        {
+            href: STUDIO_PATH,
+            title: "Главная"
+        },
+        {
+            href: STUDIO_PATH + '/settings',
+            title: "Настройки"
+        }
+    ])
+
     return (
         <div className={styles.sidebar}>
             <div className={styles.sidebar_w}>
@@ -28,8 +39,9 @@ const StudioSidebar: React.FC = () => {
                     <div className={styles.user_username}>{user.username}</div>
                 </div>
                 <div className={styles.sidebar_link_container}>
-                    <StudioSidebarLink to={STUDIO_PATH}>Главная</StudioSidebarLink>
-                    <StudioSidebarLink to={STUDIO_PATH + '/settings'}>Настройки</StudioSidebarLink>
+                    {sidebarLinks.map(link =>
+                        <StudioSidebarLink key={link.title} to={link.href}>{link.title}</StudioSidebarLink>
+                    )}
                     <a onClick={logout} className={styles.sidebar_logout}>Выйти</a>
                 </div>
             </div>
