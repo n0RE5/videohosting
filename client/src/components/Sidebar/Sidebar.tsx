@@ -1,11 +1,11 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHooks';
 import { AUTH_PATH, CONTACT_MAIL, MAIN_PATH, STUDIO_PATH, SUBSCRIPTIONS_PATH } from '../../utils/Consts';
 import SidebarLink from '../UI/SidebarLink/SidebarLink';
-import styles from './Sidebar.module.scss'
 import { userLogout } from '../../store/reducers/UserSlice';
+
 import settingsSVG from '../../assets/svg/settings.svg';
 import channelSVG from '../../assets/svg/channel.svg';
 import contactSVG from '../../assets/svg/contact.svg';
@@ -18,11 +18,14 @@ import joystickSVG from '../../assets/svg/joystick.svg';
 import swordSVG from '../../assets/svg/sword.svg';
 import filmSVG from '../../assets/svg/film.svg';
 
+import styles from './Sidebar.module.scss'
+
 const Sidebar = memo(() => {
-    const isAuth = useAppSelector(state => state.userSlice.isAuth)
-    const sidebarActive = useAppSelector(state => state.sidebarSlice.active)
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
+    
+    const isAuth = useAppSelector(state => state.userSlice.isAuth)
+    const sidebarActive = useAppSelector(state => state.sidebarSlice.active)
     const rootClasses = [styles.sidebar]
 
     const logout = () => {
@@ -30,6 +33,65 @@ const Sidebar = memo(() => {
         dispatch(userLogout())
         navigate(MAIN_PATH)    
     }
+
+    const [mainLinks] = useState([
+        {
+            src: homeSVG,
+            href: MAIN_PATH,
+            title: 'Главная',
+        },
+        {
+            src: subsSVG,
+            href: isAuth ? SUBSCRIPTIONS_PATH : AUTH_PATH,
+            title: 'Подписки',
+        },
+    ])
+
+    const [sortLinks] = useState([
+        {
+            src: fireSVG,
+            href: MAIN_PATH + '?s=all',
+            title: 'Все',
+        },
+        {
+            src: joystickSVG,
+            href: MAIN_PATH + '?s=games',
+            title: 'Видеоигры',
+        },
+        {
+            src: noteSVG,
+            href: MAIN_PATH + '?s=music',
+            title: 'Музыка',
+        },
+        {
+            src: swordSVG,
+            href: MAIN_PATH + '?s=cartoons',
+            title: 'Мультфильмы',
+        },
+        {
+            src: filmSVG,
+            href: MAIN_PATH + '?s=films',
+            title: 'Фильмы',
+        }
+    ])
+
+    const [userLinks] = useState([
+        {
+            src: settingsSVG,
+            href: isAuth ? STUDIO_PATH + '/settings' : AUTH_PATH,
+            title: 'Настройки',
+        },
+        {
+            src: contactSVG,
+            href: `mailto:${CONTACT_MAIL}`,
+            title: 'Связаться с нами',
+        },
+        {
+            src: channelSVG,
+            href: isAuth ? STUDIO_PATH : AUTH_PATH,
+            title: 'Ваш канал',
+        },
+    ])
 
     if(sidebarActive) {
         rootClasses.push(styles.sidebar_active)
@@ -39,22 +101,24 @@ const Sidebar = memo(() => {
         <div className={rootClasses.join(' ')}>
             <div className={styles.sidebar_w}>
                 <div className={styles.sidebar_container}>
-                    <SidebarLink src={homeSVG} to={MAIN_PATH}>Главная</SidebarLink>
-                    <SidebarLink src={subsSVG} to={isAuth ? SUBSCRIPTIONS_PATH : AUTH_PATH}>Подписки</SidebarLink>
+                    {mainLinks.map(link =>
+                        <SidebarLink key={link.title} src={link.src} to={link.href}>{link.title}</SidebarLink>
+                    )}
                 </div>
                 <div className={styles.sidebar_container}>
-                    <SidebarLink src={fireSVG} to={MAIN_PATH + '?s=all'}>Все</SidebarLink>
-                    <SidebarLink src={joystickSVG} to={MAIN_PATH + '?s=games'}>Видеоигры</SidebarLink>
-                    <SidebarLink src={noteSVG} to={MAIN_PATH + '?s=music'}>Музыка</SidebarLink>
-                    <SidebarLink src={swordSVG} to={MAIN_PATH + '?s=cartoons'}>Мультфильмы</SidebarLink>
-                    <SidebarLink src={filmSVG} to={MAIN_PATH + '?s=films'}>Фильмы</SidebarLink>
+                    {sortLinks.map(link =>
+                        <SidebarLink key={link.title} src={link.src} to={link.href}>{link.title}</SidebarLink>
+                    )}
                 </div>
                 <div className={styles.sidebar_container}>
-                    <SidebarLink src={settingsSVG} to={isAuth ? STUDIO_PATH + '/settings' : AUTH_PATH}>Настройки</SidebarLink>
-                    <SidebarLink src={contactSVG} to={`mailto:${CONTACT_MAIL}`}>Связаться с нами</SidebarLink>
-                    <SidebarLink src={channelSVG} to={isAuth ? STUDIO_PATH : AUTH_PATH}>Ваш канал</SidebarLink>
+                    {userLinks.map(link =>
+                        <SidebarLink key={link.title} src={link.src} to={link.href}>{link.title}</SidebarLink>
+                    )}
                     {isAuth &&
-                        <a onClick={logout} className={styles.logout}><img src={logoutSVG} className={styles.link_img}/>Выйти</a>
+                        <a onClick={logout} className={styles.logout}>
+                            <img src={logoutSVG} className={styles.link_img}/>
+                            Выйти
+                        </a>
                     }
                 </div>
                 <div className={styles.sidebar_container}>
