@@ -12,6 +12,7 @@ import { Video } from 'src/video/video.model';
 import { Subscription } from 'src/subscriptions/subscriptions.model';
 import { Like } from 'src/likes/likes.model';
 import { UserSubscriptions } from 'src/subscriptions/user-subscriptions.model';
+import { FilesModule } from 'src/files/files.module';
 
 @Module({
   controllers: [UsersController],
@@ -19,6 +20,7 @@ import { UserSubscriptions } from 'src/subscriptions/user-subscriptions.model';
   imports: [
     SequelizeModule.forFeature([User, Role, UserRoles, Bans, Video, Subscription, Like, UserSubscriptions]),
     RolesModule,
+    FilesModule,
     forwardRef(() => AuthModule)
   ],
   exports: [

@@ -26,6 +26,11 @@ export const changePassword = async(dto: userDTO, newPassword: string) => {
     return response
 }
 
+export const updateUser = async(formData: any) => {
+    const response = await $authHost.post('users/update', formData)
+    return response
+}
+
 export const getById = async (id: number): Promise<fetchedUser> => {
     const response = await $host.get(`/users/${id}`)
     return response.data

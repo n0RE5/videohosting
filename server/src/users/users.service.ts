@@ -7,11 +7,12 @@ import { User } from './users.model';
 import { Subscription } from 'src/subscriptions/subscriptions.model';
 import { Sequelize } from 'sequelize';
 import { UserSubscriptions } from 'src/subscriptions/user-subscriptions.model';
+import { FilesService } from 'src/files/files.service';
 
 @Injectable()
 export class UsersService {
 
-    constructor(@InjectModel(User) private userRepository: typeof User, private roleService: RolesService, @InjectModel(Subscription) private subscriptionRepository: typeof Subscription) {}
+    constructor(@InjectModel(User) private userRepository: typeof User, private roleService: RolesService, @InjectModel(Subscription) private subscriptionRepository: typeof Subscription, private fileService: FilesService) {}
 
     async createUser(dto: CreateUserDto) {
          const user = await this.userRepository.create(dto)
@@ -44,6 +45,13 @@ export class UsersService {
             },
             group: ['User.id']
         })
+        return user
+    }
+
+    async editUser(files: any, req: any) {
+        const user = await this.userRepository.findOne({where: {id: req.user.id}})
+        const profileImg = await this.fileService.createFile(files[0], '.jpg')
+        await user.update({profileImg})
         return user
     }
 }
