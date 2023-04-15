@@ -7,6 +7,7 @@ import { IVideo } from '../types/Interfaces';
 import DefaultContainer from '../components/DefaultContainer/DefaultContainer';
 import VideoSort from '../components/VideoSort/VideoSort';
 import '../styles/mainpage.scss'
+import MainModule from '../modules/MainModule';
 
 function MainPage () {
     const [videos, setVideos] = useState<IVideo[]>([])
@@ -24,18 +25,10 @@ function MainPage () {
 
     return (
         <DefaultContainer appTitle='YouVI'>
-            <div className='mainpage'>
-                {isFetching
-                    ? <Loader />
-                    : <div className='mainpage_videogrid'>
-                        {sortedVideos.length
-                            ? <VideoGridbox videos={sortedVideos}/>
-                            : <div className='mainpage_notfound'>По вашему запросу ничего не найдено :(</div>
-                        }
-                    </div>
-                }
-            </div>
-            <VideoSort setSortedList={setSortedVideos} defaultList={videos} />
+            {isFetching
+                ? <Loader />
+                : <MainModule videos={videos} setSortedVideos={setSortedVideos} sortedVideos={sortedVideos} />
+            }
         </DefaultContainer>
     );
 };
