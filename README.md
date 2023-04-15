@@ -1,4 +1,4 @@
-twitterclone
+videohosting
 ========
 Fullstack Youtube-like online Video Hosting that is made with ReactJS + NestJS
 
