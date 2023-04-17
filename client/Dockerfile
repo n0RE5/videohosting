@@ -12,7 +12,9 @@ EXPOSE 3000
 
 RUN npm run build
 
-FROM nginx:1.16.0-alpine
+FROM nginx:alpine
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 COPY --from=reactimg /app/build /usr/share/nginx/html
 
