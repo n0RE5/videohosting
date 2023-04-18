@@ -40,10 +40,6 @@ function WatchPage() {
         fetchAll()
     }, [])
 
-    if(isFetching) {
-        return <Loader />
-    }
-
     return (
         <DefaultContainer appTitle={`${video.title} - YouVI`}>
             {isFetching
