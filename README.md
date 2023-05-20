@@ -2,6 +2,16 @@ videohosting
 ========
 Fullstack Youtube-like online Video Hosting that is made with ReactJS + NestJS
 
+Gallery
+------------------
+
+<img src="Media/1.png" width=100%>
+<img src="Media/2.png" width=100%>
+<img src="Media/3.png" width=100%>
+<img src="Media/4.png" width=100%>
+<img src="Media/5.png" width=100%>
+<img src="Media/6.png" width=100%>
+
 Table of Technologies
 ------------------
 1. React 
